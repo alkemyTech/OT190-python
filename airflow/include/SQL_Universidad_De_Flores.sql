@@ -11,3 +11,5 @@ SELECT
 	correo_electronico AS email 	
 FROM
 	flores_comahue
+WHERE
+	fecha_de_inscripcion BETWEEN '2020-09-01' AND '2021-02-01';

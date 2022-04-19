@@ -18,4 +18,4 @@ SELECT
 FROM
 	svm_refined_dates
 WHERE
-	inscription_date BETWEEN '01-09-20' AND '01-02-21';
+	inscription_date BETWEEN '2020-09-01' AND '2021-02-01';
