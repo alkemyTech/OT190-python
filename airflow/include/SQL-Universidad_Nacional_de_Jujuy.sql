@@ -16,3 +16,4 @@ WHERE
     university = 'universidad nacional de jujuy' 
     and (date(inscription_date) BETWEEN '2020/09/01' and  '2021/02/01' )
     order by date(inscription_date) asc;
+    

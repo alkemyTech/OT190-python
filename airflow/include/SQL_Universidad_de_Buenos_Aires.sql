@@ -15,3 +15,4 @@ where
 	universidades = 'universidad-de-buenos-aires'
 	AND TO_DATE(fechas_de_inscripcion,'DD-Mon-YY')>= '01-Sep-2020'
 	AND TO_DATE(fechas_de_inscripcion,'DD-Mon-YY')< '01-Feb-2021'
+

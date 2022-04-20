@@ -16,3 +16,4 @@ WHERE
     universidad = '_universidad_de_palermo' 
     and (date(fecha_de_inscripcion) BETWEEN '01/Sep/20' and  '01/Feb/21' )
     order by date(fecha_de_inscripcion) asc;
+

@@ -14,3 +14,4 @@ where
 	universities = 'UNIVERSIDAD-DEL-CINE'
 	AND TO_DATE(inscription_dates ,'DD-MM-YY')>= '01-09-2020'
 	AND TO_DATE(inscription_dates ,'DD-MM-YY')< '01-02-2021'
+	

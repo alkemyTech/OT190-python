@@ -14,3 +14,4 @@ WHERE
   universidad = 'universidad_nacional_de_tres_de_febrero'
   AND TO_DATE(fecha_de_inscripcion, 'DD/Mon/YY') >= '01/Sep/20'
   AND TO_DATE(fecha_de_inscripcion, 'DD/Mon/YY') <= '01/Feb/21';
+  
