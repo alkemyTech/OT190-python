@@ -16,5 +16,3 @@ AND TO_DATE(fecha_de_inscripcion, 'YYYY/MM/DD') BETWEEN '2020-09-01'::date AND '
 
 
 
-
-
