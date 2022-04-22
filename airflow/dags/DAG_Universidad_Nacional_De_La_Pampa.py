@@ -1,10 +1,13 @@
+'''DAG para el procesamiento de datos
+Universidad Nacional De La Pampa
+Grupo E'''
+
 from airflow import DAG
 from airflow.operators.dummy import DummyOperator
 import pendulum
 
 with DAG(
     'DAG_Universidad_Nacional_De_La_Pampa',
-    description="DAG para el procesamiento de datos de la Universidad Nacional De La Pampa. Grupo de Universidades E",
     start_date=pendulum.datetime(2022, 4, 20, tz="UTC"),
     schedule_interval='@hourly',
     catchup=False,
