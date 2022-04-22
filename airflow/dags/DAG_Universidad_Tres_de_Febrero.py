@@ -1,8 +1,8 @@
+from datetime import datetime
+
 from airflow import DAG
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
-
-from datetime import datetime
 
 """ DAG structure. Perform ETL for Universidad Tres de Febrero
     TODO:
