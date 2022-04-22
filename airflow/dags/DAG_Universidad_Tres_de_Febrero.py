@@ -5,16 +5,17 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime
 
 """ DAG structure. Perform ETL for Universidad Tres de Febrero
-    TODO: 
+    TODO:
         - Extract: SQL Operator (postgres)
         - Transform: Python Operator (pandas)
         - Load: Python Operator (S3)
 """
 
-# Python callables
 
+# Python callables
 def transform_data():
     pass
+
 
 def load_to_s3():
     pass
@@ -27,17 +28,17 @@ with DAG(
     catchup=False) as dag:
 
         extract = DummyOperator(
-            task_id = "extract",
+            task_id="extract",
         )
 
         transform = PythonOperator(
-            task_id = "transform",
-            python_callable = transform_data
+            task_id="transform",
+            python_callable=transform_data
         )
 
         load = PythonOperator(
-            task_id = "load",
-            python_callable = load_to_s3 
+            task_id="load",
+            python_callable=load_to_s3
         )
 
         extract >> transform >> load
