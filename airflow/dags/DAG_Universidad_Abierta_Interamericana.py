@@ -19,7 +19,7 @@ with DAG(
     extract_task = DummyOperator(
         task_id='extract_task',
         retries=5,
-        )
+    )
 
     # Procesamiento de datos con pandas y guardar los datos en S3
     # Posibles operadores: PythonOperator
@@ -27,6 +27,6 @@ with DAG(
     transform_task = DummyOperator(
         task_id='transform_task',
         depends_on_past=True,
-        )
+    )
 
     extract_task >> transform_task
