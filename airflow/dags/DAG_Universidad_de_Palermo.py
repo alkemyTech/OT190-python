@@ -18,7 +18,7 @@ with DAG(
     "DAG_Universidad_de_Palermo",
     description="DAG para la Universidad de Palermo",
     schedule_interval="@hourly",  # Que se ejecute cada hora
-    start_date=datetime.now(),
+    start_date=datetime(2022,4,22)
 ) as dag:
     # Solo declaro las tareas de extraer datos, transformarlos y subirlos
     extract_task = DummyOperator(task_id="extract_task", dag=dag)
