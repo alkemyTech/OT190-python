@@ -1,0 +1,63 @@
+[2022-04-21 22:50:36,216] {processor.py:163} INFO - Started process (PID=795) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:50:36,218] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py for tasks to queue
+[2022-04-21 22:50:36,219] {logging_mixin.py:109} INFO - [2022-04-21 22:50:36,219] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:50:36,271] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_de_Palermo']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:50:36,277] {logging_mixin.py:109} INFO - [2022-04-21 22:50:36,277] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:50:36,296] {logging_mixin.py:109} INFO - [2022-04-21 22:50:36,296] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_de_Palermo to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:50:36,419] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py took 0.209 seconds
+[2022-04-21 22:51:20,900] {processor.py:163} INFO - Started process (PID=896) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:51:20,911] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py for tasks to queue
+[2022-04-21 22:51:20,912] {logging_mixin.py:109} INFO - [2022-04-21 22:51:20,912] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:51:20,985] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_de_Palermo']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:51:21,619] {logging_mixin.py:109} INFO - [2022-04-21 22:51:21,619] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:51:21,638] {logging_mixin.py:109} INFO - [2022-04-21 22:51:21,637] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_de_Palermo to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:51:21,669] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py took 0.779 seconds
+[2022-04-21 22:52:00,260] {processor.py:163} INFO - Started process (PID=960) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:52:00,267] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py for tasks to queue
+[2022-04-21 22:52:00,269] {logging_mixin.py:109} INFO - [2022-04-21 22:52:00,269] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:52:00,350] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_de_Palermo']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:52:01,275] {logging_mixin.py:109} INFO - [2022-04-21 22:52:01,275] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:52:01,295] {logging_mixin.py:109} INFO - [2022-04-21 22:52:01,295] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_de_Palermo to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:52:01,309] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py took 1.058 seconds
+[2022-04-21 22:52:43,711] {processor.py:163} INFO - Started process (PID=1074) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:52:43,712] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py for tasks to queue
+[2022-04-21 22:52:43,713] {logging_mixin.py:109} INFO - [2022-04-21 22:52:43,713] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:52:43,748] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_de_Palermo']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:52:44,240] {logging_mixin.py:109} INFO - [2022-04-21 22:52:44,240] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:52:44,258] {logging_mixin.py:109} INFO - [2022-04-21 22:52:44,258] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_de_Palermo to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:52:44,274] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py took 0.569 seconds
+[2022-04-21 22:53:24,316] {processor.py:163} INFO - Started process (PID=1201) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:53:24,319] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py for tasks to queue
+[2022-04-21 22:53:24,320] {logging_mixin.py:109} INFO - [2022-04-21 22:53:24,320] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:53:24,391] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_de_Palermo']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:53:25,078] {logging_mixin.py:109} INFO - [2022-04-21 22:53:25,078] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:53:25,095] {logging_mixin.py:109} INFO - [2022-04-21 22:53:25,095] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_de_Palermo to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:53:25,111] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py took 0.804 seconds
+[2022-04-21 22:54:08,235] {processor.py:163} INFO - Started process (PID=1293) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:54:08,238] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py for tasks to queue
+[2022-04-21 22:54:08,239] {logging_mixin.py:109} INFO - [2022-04-21 22:54:08,239] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:54:08,300] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_de_Palermo']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:54:09,016] {logging_mixin.py:109} INFO - [2022-04-21 22:54:09,016] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:54:09,032] {logging_mixin.py:109} INFO - [2022-04-21 22:54:09,032] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_de_Palermo to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:54:09,046] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py took 0.819 seconds
+[2022-04-21 22:54:46,717] {processor.py:163} INFO - Started process (PID=1358) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:54:46,719] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py for tasks to queue
+[2022-04-21 22:54:46,720] {logging_mixin.py:109} INFO - [2022-04-21 22:54:46,720] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:54:46,787] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_de_Palermo']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:54:47,384] {logging_mixin.py:109} INFO - [2022-04-21 22:54:47,383] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:54:47,418] {logging_mixin.py:109} INFO - [2022-04-21 22:54:47,417] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_de_Palermo to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:54:47,446] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py took 0.739 seconds
+[2022-04-21 22:55:23,589] {processor.py:163} INFO - Started process (PID=1418) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:55:23,592] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py for tasks to queue
+[2022-04-21 22:55:23,593] {logging_mixin.py:109} INFO - [2022-04-21 22:55:23,593] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:55:23,659] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_de_Palermo']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:55:24,387] {logging_mixin.py:109} INFO - [2022-04-21 22:55:24,386] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:55:24,403] {logging_mixin.py:109} INFO - [2022-04-21 22:55:24,403] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_de_Palermo to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:55:24,417] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py took 0.838 seconds
+[2022-04-21 22:56:02,730] {processor.py:163} INFO - Started process (PID=1480) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:56:02,732] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py for tasks to queue
+[2022-04-21 22:56:02,733] {logging_mixin.py:109} INFO - [2022-04-21 22:56:02,733] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:56:02,782] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_de_Palermo']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py
+[2022-04-21 22:56:03,385] {logging_mixin.py:109} INFO - [2022-04-21 22:56:03,385] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:56:03,409] {logging_mixin.py:109} INFO - [2022-04-21 22:56:03,409] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_de_Palermo to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:56:03,427] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_de_Palermo.py took 0.704 seconds

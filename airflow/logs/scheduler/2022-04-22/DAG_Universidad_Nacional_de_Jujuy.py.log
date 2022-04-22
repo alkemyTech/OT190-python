@@ -1,0 +1,63 @@
+[2022-04-21 22:50:37,878] {processor.py:163} INFO - Started process (PID=797) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:50:37,886] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py for tasks to queue
+[2022-04-21 22:50:37,889] {logging_mixin.py:109} INFO - [2022-04-21 22:50:37,888] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:50:37,964] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_Nacional_de_Jujuy']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:50:37,972] {logging_mixin.py:109} INFO - [2022-04-21 22:50:37,972] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:50:38,008] {logging_mixin.py:109} INFO - [2022-04-21 22:50:38,008] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_Nacional_de_Jujuy to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:50:38,029] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py took 0.168 seconds
+[2022-04-21 22:51:22,810] {processor.py:163} INFO - Started process (PID=899) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:51:22,813] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py for tasks to queue
+[2022-04-21 22:51:22,814] {logging_mixin.py:109} INFO - [2022-04-21 22:51:22,814] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:51:22,861] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_Nacional_de_Jujuy']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:51:23,617] {logging_mixin.py:109} INFO - [2022-04-21 22:51:23,617] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:51:23,638] {logging_mixin.py:109} INFO - [2022-04-21 22:51:23,638] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_Nacional_de_Jujuy to 2022-04-21T23:00:00+00:00
+[2022-04-21 22:51:23,658] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py took 0.856 seconds
+[2022-04-21 22:52:02,484] {processor.py:163} INFO - Started process (PID=969) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:52:02,488] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py for tasks to queue
+[2022-04-21 22:52:02,490] {logging_mixin.py:109} INFO - [2022-04-21 22:52:02,490] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:52:02,568] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_Nacional_de_Jujuy']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:52:03,361] {logging_mixin.py:109} INFO - [2022-04-21 22:52:03,361] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:52:03,380] {logging_mixin.py:109} INFO - [2022-04-21 22:52:03,380] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_Nacional_de_Jujuy to 2022-04-22T01:00:00+00:00
+[2022-04-21 22:52:03,399] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py took 0.929 seconds
+[2022-04-21 22:52:45,125] {processor.py:163} INFO - Started process (PID=1076) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:52:45,130] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py for tasks to queue
+[2022-04-21 22:52:45,132] {logging_mixin.py:109} INFO - [2022-04-21 22:52:45,132] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:52:45,230] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_Nacional_de_Jujuy']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:52:45,916] {logging_mixin.py:109} INFO - [2022-04-21 22:52:45,916] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:52:45,934] {logging_mixin.py:109} INFO - [2022-04-21 22:52:45,933] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_Nacional_de_Jujuy to 2022-04-22T01:00:00+00:00
+[2022-04-21 22:52:45,949] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py took 0.841 seconds
+[2022-04-21 22:53:25,914] {processor.py:163} INFO - Started process (PID=1203) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:53:25,917] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py for tasks to queue
+[2022-04-21 22:53:25,918] {logging_mixin.py:109} INFO - [2022-04-21 22:53:25,918] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:53:25,992] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_Nacional_de_Jujuy']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:53:26,645] {logging_mixin.py:109} INFO - [2022-04-21 22:53:26,645] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:53:26,660] {logging_mixin.py:109} INFO - [2022-04-21 22:53:26,660] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_Nacional_de_Jujuy to 2022-04-22T01:00:00+00:00
+[2022-04-21 22:53:26,674] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py took 0.770 seconds
+[2022-04-21 22:54:06,394] {processor.py:163} INFO - Started process (PID=1291) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:54:06,396] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py for tasks to queue
+[2022-04-21 22:54:06,397] {logging_mixin.py:109} INFO - [2022-04-21 22:54:06,397] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:54:06,443] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_Nacional_de_Jujuy']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:54:07,020] {logging_mixin.py:109} INFO - [2022-04-21 22:54:07,020] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:54:07,045] {logging_mixin.py:109} INFO - [2022-04-21 22:54:07,045] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_Nacional_de_Jujuy to 2022-04-22T01:00:00+00:00
+[2022-04-21 22:54:07,068] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py took 0.685 seconds
+[2022-04-21 22:54:44,896] {processor.py:163} INFO - Started process (PID=1356) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:54:44,897] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py for tasks to queue
+[2022-04-21 22:54:44,898] {logging_mixin.py:109} INFO - [2022-04-21 22:54:44,898] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:54:44,943] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_Nacional_de_Jujuy']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:54:45,499] {logging_mixin.py:109} INFO - [2022-04-21 22:54:45,499] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:54:45,531] {logging_mixin.py:109} INFO - [2022-04-21 22:54:45,531] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_Nacional_de_Jujuy to 2022-04-22T01:00:00+00:00
+[2022-04-21 22:54:45,556] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py took 0.665 seconds
+[2022-04-21 22:55:21,690] {processor.py:163} INFO - Started process (PID=1415) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:55:21,693] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py for tasks to queue
+[2022-04-21 22:55:21,695] {logging_mixin.py:109} INFO - [2022-04-21 22:55:21,695] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:55:21,737] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_Nacional_de_Jujuy']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:55:22,374] {logging_mixin.py:109} INFO - [2022-04-21 22:55:22,374] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:55:22,396] {logging_mixin.py:109} INFO - [2022-04-21 22:55:22,396] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_Nacional_de_Jujuy to 2022-04-22T01:00:00+00:00
+[2022-04-21 22:55:22,413] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py took 0.732 seconds
+[2022-04-21 22:56:00,849] {processor.py:163} INFO - Started process (PID=1477) to work on /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:56:00,851] {processor.py:625} INFO - Processing file /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py for tasks to queue
+[2022-04-21 22:56:00,852] {logging_mixin.py:109} INFO - [2022-04-21 22:56:00,852] {dagbag.py:500} INFO - Filling up the DagBag from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:56:00,905] {processor.py:637} INFO - DAG(s) dict_keys(['DAG_Universidad_Nacional_de_Jujuy']) retrieved from /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py
+[2022-04-21 22:56:01,578] {logging_mixin.py:109} INFO - [2022-04-21 22:56:01,578] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:56:01,596] {logging_mixin.py:109} INFO - [2022-04-21 22:56:01,596] {dag.py:2928} INFO - Setting next_dagrun for DAG_Universidad_Nacional_de_Jujuy to 2022-04-22T01:00:00+00:00
+[2022-04-21 22:56:01,609] {processor.py:171} INFO - Processing /mnt/c/Users/daiana/Documents/GitHub/OT190-python/airflow/dags/DAG_Universidad_Nacional_de_Jujuy.py took 0.766 seconds

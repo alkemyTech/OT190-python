@@ -1,0 +1,42 @@
+[2022-04-21 22:51:18,235] {processor.py:163} INFO - Started process (PID=892) to work on /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:51:18,237] {processor.py:625} INFO - Processing file /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py for tasks to queue
+[2022-04-21 22:51:18,238] {logging_mixin.py:109} INFO - [2022-04-21 22:51:18,238] {dagbag.py:500} INFO - Filling up the DagBag from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:51:18,290] {processor.py:637} INFO - DAG(s) dict_keys(['example_branch_datetime_operator_2']) retrieved from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:51:18,304] {logging_mixin.py:109} INFO - [2022-04-21 22:51:18,304] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:51:18,323] {logging_mixin.py:109} INFO - [2022-04-21 22:51:18,323] {dag.py:2928} INFO - Setting next_dagrun for example_branch_datetime_operator_2 to 2022-04-21 00:00:00+00:00
+[2022-04-21 22:51:18,336] {processor.py:171} INFO - Processing /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py took 0.106 seconds
+[2022-04-21 22:52:19,294] {processor.py:163} INFO - Started process (PID=1003) to work on /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:52:19,297] {processor.py:625} INFO - Processing file /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py for tasks to queue
+[2022-04-21 22:52:19,298] {logging_mixin.py:109} INFO - [2022-04-21 22:52:19,297] {dagbag.py:500} INFO - Filling up the DagBag from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:52:19,350] {processor.py:637} INFO - DAG(s) dict_keys(['example_branch_datetime_operator_2']) retrieved from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:52:19,369] {logging_mixin.py:109} INFO - [2022-04-21 22:52:19,369] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:52:19,390] {logging_mixin.py:109} INFO - [2022-04-21 22:52:19,390] {dag.py:2928} INFO - Setting next_dagrun for example_branch_datetime_operator_2 to 2022-04-21 00:00:00+00:00
+[2022-04-21 22:52:19,406] {processor.py:171} INFO - Processing /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py took 0.121 seconds
+[2022-04-21 22:53:21,704] {processor.py:163} INFO - Started process (PID=1191) to work on /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:53:21,708] {processor.py:625} INFO - Processing file /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py for tasks to queue
+[2022-04-21 22:53:21,710] {logging_mixin.py:109} INFO - [2022-04-21 22:53:21,710] {dagbag.py:500} INFO - Filling up the DagBag from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:53:21,781] {processor.py:637} INFO - DAG(s) dict_keys(['example_branch_datetime_operator_2']) retrieved from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:53:21,815] {logging_mixin.py:109} INFO - [2022-04-21 22:53:21,815] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:53:21,843] {logging_mixin.py:109} INFO - [2022-04-21 22:53:21,843] {dag.py:2928} INFO - Setting next_dagrun for example_branch_datetime_operator_2 to 2022-04-21 00:00:00+00:00
+[2022-04-21 22:53:21,860] {processor.py:171} INFO - Processing /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py took 0.166 seconds
+[2022-04-21 22:54:23,011] {processor.py:163} INFO - Started process (PID=1314) to work on /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:54:23,014] {processor.py:625} INFO - Processing file /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py for tasks to queue
+[2022-04-21 22:54:23,015] {logging_mixin.py:109} INFO - [2022-04-21 22:54:23,015] {dagbag.py:500} INFO - Filling up the DagBag from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:54:23,078] {processor.py:637} INFO - DAG(s) dict_keys(['example_branch_datetime_operator_2']) retrieved from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:54:23,095] {logging_mixin.py:109} INFO - [2022-04-21 22:54:23,095] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:54:23,120] {logging_mixin.py:109} INFO - [2022-04-21 22:54:23,120] {dag.py:2928} INFO - Setting next_dagrun for example_branch_datetime_operator_2 to 2022-04-21 00:00:00+00:00
+[2022-04-21 22:54:23,140] {processor.py:171} INFO - Processing /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py took 0.135 seconds
+[2022-04-21 22:55:19,015] {processor.py:163} INFO - Started process (PID=1412) to work on /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:55:19,018] {processor.py:625} INFO - Processing file /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py for tasks to queue
+[2022-04-21 22:55:19,021] {logging_mixin.py:109} INFO - [2022-04-21 22:55:19,020] {dagbag.py:500} INFO - Filling up the DagBag from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:55:19,083] {processor.py:637} INFO - DAG(s) dict_keys(['example_branch_datetime_operator_2']) retrieved from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:55:19,099] {logging_mixin.py:109} INFO - [2022-04-21 22:55:19,099] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:55:19,120] {logging_mixin.py:109} INFO - [2022-04-21 22:55:19,120] {dag.py:2928} INFO - Setting next_dagrun for example_branch_datetime_operator_2 to 2022-04-21 00:00:00+00:00
+[2022-04-21 22:55:19,142] {processor.py:171} INFO - Processing /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py took 0.140 seconds
+[2022-04-21 22:56:17,490] {processor.py:163} INFO - Started process (PID=1507) to work on /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:56:17,493] {processor.py:625} INFO - Processing file /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py for tasks to queue
+[2022-04-21 22:56:17,494] {logging_mixin.py:109} INFO - [2022-04-21 22:56:17,494] {dagbag.py:500} INFO - Filling up the DagBag from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:56:17,558] {processor.py:637} INFO - DAG(s) dict_keys(['example_branch_datetime_operator_2']) retrieved from /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py
+[2022-04-21 22:56:17,573] {logging_mixin.py:109} INFO - [2022-04-21 22:56:17,573] {dag.py:2396} INFO - Sync 1 DAGs
+[2022-04-21 22:56:17,593] {logging_mixin.py:109} INFO - [2022-04-21 22:56:17,593] {dag.py:2928} INFO - Setting next_dagrun for example_branch_datetime_operator_2 to 2022-04-21 00:00:00+00:00
+[2022-04-21 22:56:17,608] {processor.py:171} INFO - Processing /home/daalonso/.local/lib/python3.8/site-packages/airflow/example_dags/example_branch_datetime_operator.py took 0.128 seconds
