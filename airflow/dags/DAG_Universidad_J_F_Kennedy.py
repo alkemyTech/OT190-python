@@ -1,4 +1,4 @@
-#Configuración de DAG para procese la Facultad Latinoamericana de Ciencias Sociales
+#Configuración de DAG para procese la Universidad J.F Kennedy
 
 from airflow import DAG   
 from datetime import timedelta, datetime 
