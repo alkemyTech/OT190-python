@@ -1,13 +1,20 @@
-#Configuración de DAG para procese la Facultad Latinoamericana de Ciencias Sociales
+#Configuración de los retries para la Facultad Latinoamericana de Ciencias Sociales
 
 from airflow import DAG   
 from datetime import timedelta, datetime 
 from airflow.operators.dummy import DummyOperator
 
 
+#Default settings applied to all tasks
+default_args = {
+    'retries': 5,
+    'retry_delay': timedelta(minutes=5)
+}
+
 with DAG(   
     'DAG_Facultad_Latinoamericana_Ciencias_Sociales',   
     description= 'Procesa la información de la Facultad Latinoamericana de Ciencias Sociales',
+    default_args = default_args,
     schedule_interval= timedelta(hours=1),  
     start_date = datetime(2022, 4, 24)  
 ) as dag:

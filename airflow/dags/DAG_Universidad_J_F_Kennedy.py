@@ -1,13 +1,20 @@
-#Configuración de DAG para procese la Universidad J.F Kennedy
+#Configuración de los retries para la Universidad J.F Kennedy
 
 from airflow import DAG   
 from datetime import timedelta, datetime 
 from airflow.operators.dummy import DummyOperator
 
 
+#Default settings applied to all tasks
+default_args = {
+    'retries': 5,
+    'retry_delay': timedelta(minutes=5)
+}
+
 with DAG(   
     'DAG_Universidad_J_F_Kennedy',   
     description= 'Procesa la información de la Universidad J.F Kennedy',
+    default_args = default_args,
     schedule_interval= timedelta(hours=1),  
     start_date = datetime(2022, 4, 24)  
 ) as dag:
