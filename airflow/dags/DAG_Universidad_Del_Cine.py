@@ -17,8 +17,15 @@ def load():
     pass
 
 
+default_args = {
+    'retries': 5,
+    'retry_delay': timedelta(minutes=5)
+}
+
+
 with DAG(
     "DAG_Universidad_Del_Cine",
+    default_args=default_args,
     description="DAG sin procesamiento para la Universidad del Cine",
     schedule_interval=timedelta(hours=1),
     start_date=datetime(2022, 4, 22)
