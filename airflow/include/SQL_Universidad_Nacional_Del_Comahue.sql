@@ -16,5 +16,8 @@ AND TO_DATE(fecha_de_inscripcion, 'YYYY/MM/DD') BETWEEN '2020-09-01'::date AND '
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ee40b159bae64e4e79f1a4695bc724a5455bfef5
