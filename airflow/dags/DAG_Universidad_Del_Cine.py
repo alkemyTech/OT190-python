@@ -21,12 +21,12 @@ def extract():
 
 
 def transform_data():
-    logger.info('Extract data')
+    logger.info('Transform data')
     pass
 
 
 def load():
-    logger.info('Extract data')
+    logger.info('Load data')
     pass
 
 
