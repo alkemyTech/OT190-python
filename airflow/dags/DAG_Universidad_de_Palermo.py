@@ -1,9 +1,9 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.dummy import DummyOperator
 
 """
-Configuración del DAG sin consultas ni procesamiento
+Configuración del DAG con retries sin consultas ni procesamiento
 para la Universidad de Palermo
 """
 
@@ -12,11 +12,14 @@ default_args = {
     "depends_on_past": False,
     "email_on_failure": False,
     "email_on_retry": False,
+    'retries': 5,              
+    'retry_delay': timedelta(seconds=30)
 }
 
 with DAG(
     "DAG_Universidad_de_Palermo",
     description="DAG para la Universidad de Palermo",
+    default_args=default_args,
     schedule_interval="@hourly",  # Que se ejecute cada hora
     start_date=datetime(2022,4,22)
 ) as dag:
