@@ -2,7 +2,7 @@
 from datetime import timedelta, datetime
 # Logging
 import logging
-# Airflow Modules
+# Airflow modules
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
@@ -12,21 +12,21 @@ logging.basicConfig(level = logging.INFO,
                     datefmt='%Y-%m-%d',
                     encoding= "utf-8")
 
-logger = logging.getLogger('DAG - Universidad Del Cine')
+logger = logging.getLogger('DAG - Universidad De Buenos Aires')
 
-# dag sin consultas para universidad del cine
+
 def extract():
     logger.info('Extract data')
     pass
 
 
 def transform_data():
-    logger.info('Extract data')
+    logger.info('Transform data')
     pass
 
 
 def load():
-    logger.info('Extract data')
+    logger.info('Load data')
     pass
 
 
@@ -37,9 +37,9 @@ default_args = {
 
 
 with DAG(
-    "DAG_Universidad_Del_Cine",
+    "DAG_Universidad_De_Buenos_Aires",
     default_args=default_args,
-    description="DAG sin procesamiento para la Universidad del Cine",
+    description="DAG sin procesamiento para la Universidad de Buenos Aires",
     schedule_interval=timedelta(hours=1),
     start_date=datetime(2022, 4, 22)
 ) as dag:
