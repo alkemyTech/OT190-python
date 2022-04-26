@@ -1,19 +1,32 @@
+# Built in modules
 from datetime import timedelta, datetime
-
+# Logging
+import logging
+# Airflow Modules
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
 
-# dag sin consultas para universidad del cine
+logging.basicConfig(level = logging.INFO,
+                    format = " %(asctime)s - %(name)s - %(message)s",
+                    datefmt='%Y-%m-%d',
+                    encoding= "utf-8")
+
+logger = logging.getLogger('DAG - Universidad Del Cine')
+
+
 def extract():
+    logger.info('Extract data')
     pass
 
 
 def transform_data():
+    logger.info('Extract data')
     pass
 
 
 def load():
+    logger.info('Extract data')
     pass
 
 
@@ -46,3 +59,4 @@ with DAG(
         )
 
     extract_task >> transform_data_task >> load_task
+
