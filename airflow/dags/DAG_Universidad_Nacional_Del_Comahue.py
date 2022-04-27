@@ -15,6 +15,7 @@ import logging
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
 
+
 logging.basicConfig(
     level = logging.INFO,
     format = " %(asctime)s - %(name)s - %(message)s",
@@ -30,6 +31,7 @@ def extract():
     #     postgres_conn_id='my_postgres_connection',
     #     autocommit=False
     # )
+
     logger.info('Extrac')
     pass
 
@@ -64,6 +66,11 @@ with DAG(
     transform_task = PythonOperator(
         task_id='transform',
         python_callable=transform
+        )
+    
+    load_task = PythonOperator(
+        task_id='load',
+        python_callable=load
         )
 
     load_task = PythonOperator(

@@ -14,6 +14,7 @@ import logging
 
 from airflow.operators.python import PythonOperator
 
+
 logging.basicConfig(
     level = logging.INFO,
     format = " %(asctime)s - %(name)s - %(message)s",
