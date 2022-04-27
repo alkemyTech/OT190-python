@@ -1,18 +1,28 @@
 '''
-DAG para la Universidad_Nacional_Del_Comahue, sin consultas, ni procesamiento
-Sprint 2, OT190-29
+DAG para la Universidad_Nacional_Del_Comahue
+Sprint 2, OT190-45
 
 1.- ETL
 2.- retries
+3.- logg
 '''
 
 from unittest import FunctionTestCase
 from airflow import DAG
 from datetime import timedelta, datetime
+import logging
 
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
 
+
+logging.basicConfig(
+    level = logging.INFO,
+    format = " %(asctime)s - %(name)s - %(message)s",
+    datefmt='%Y-%m-%d'
+    )
+
+logger = logging.getLogger('DAG - Universidad_Nacional_Del_Comahue')
 
 def extract():
     # extract_task = PostgresOperator(
@@ -22,12 +32,15 @@ def extract():
     #     autocommit=False
     # )
 
+    logger.info('Extrac')
     pass
 
 def transform():
+    logger.info('Transform')
     pass
 
 def load():
+    logger.info('Load')
     pass
 
 default_args = {
@@ -36,8 +49,8 @@ default_args = {
 }
 
 with DAG(
-    'DAG_Universidad_Nacional_Del_Comahue_ETL_Retries',
-    description= 'OT190-29 DAG_Universidad_Nacional_Del_Comahue, sin consultas, ni procesamiento, ETL-Retries',
+    'DAG_Universidad_Nacional_Del_Comahue_ETL_Retries_Log',
+    description= 'OT190-29 DAG_Universidad_Nacional_Del_Comahue, sin consultas, ni procesamiento, ETL-Retries-Log',
     schedule_interval=timedelta(hours=1),
     start_date= datetime(2024,4,21),
     default_args=default_args
@@ -55,6 +68,11 @@ with DAG(
         python_callable=transform
         )
     
+    load_task = PythonOperator(
+        task_id='load',
+        python_callable=load
+        )
+
     load_task = PythonOperator(
         task_id='load',
         python_callable=load
