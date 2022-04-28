@@ -5,7 +5,9 @@ import logging
 # Airflow modules
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.providers.postgres.operators.postgres import PostgresOperator
 
+sql_path = "../include/SQL_Universidad_de_Buenos_Aires.sql"
 
 logging.basicConfig(level = logging.INFO,
                     format = " %(asctime)s - %(name)s - %(message)s",
@@ -43,9 +45,10 @@ with DAG(
     schedule_interval=timedelta(hours=1),
     start_date=datetime(2022, 4, 22)
 ) as dag:
-    extract_task = PythonOperator(
-        task_id="extract_task",
-        python_callable=extract
+    select_task = PostgresOperator(
+        task_id="select_task",
+        postgres_conn_id='db_alkemy_universidades',
+        sql=sql_path
         )
 
     transform_data_task = PythonOperator(
@@ -58,4 +61,4 @@ with DAG(
         python_callable=load
         )
 
-    extract_task >> transform_data_task >> load_task
+    select_task >> transform_data_task >> load_task
