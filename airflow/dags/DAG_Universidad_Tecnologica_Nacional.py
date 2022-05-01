@@ -61,7 +61,7 @@ def extract_data(file_name_):
 
         logger.info('Writing done')
 
-
+# OT190-71
 def transform_data():
     pass
 
