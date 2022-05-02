@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
 from airflow.hooks.postgres_hook import PostgresHook
+from airflow.hooks.S3_hook import S3Hook
 import os
 import logging
 import pathlib
@@ -140,7 +140,19 @@ def normalize_data(csv_filename):
     ]
     log.info(f"Guardando archivo transformado en: datasets/{csv_filename}.txt")
     df_univ.to_csv(f"{path_p}/datasets/{csv_filename}.txt", sep="\t")
-    return df_univ
+
+
+def upload_to_S3(filename, key, bucketname):
+    """
+    Sube el archivo a S3
+    """
+    log.info(f"Intentando subir archivo {filename} a S3")
+    try:
+        hook = S3Hook("s3_conn")
+        hook.load_file(filename=filename, key=key, bucket_name=bucketname, replace=True)
+    except Exception as e:
+        log.error(f"No se pudo subir el archivo a S3: {e}")
+    log.info(f"Archivo subido a S3")
 
 
 default_args = {"owner": "airflow", "retries": 5, "retry_delay": timedelta(seconds=30)}
@@ -173,7 +185,18 @@ with DAG(
         op_kwargs={"csv_filename": "universidad_nacional_de_jujuy"},
     )
 
-    load_task = DummyOperator(task_id="load_task", dag=dag)
+    load_task = PythonOperator(
+        task_id="load_task",
+        python_callable=upload_to_S3,
+        op_kwargs={
+            "filename": os.path.join(
+                path_p, "datasets/universidad_nacional_de_jujuy.txt"
+            ),
+            "key": "universidad_nacional_de_jujuy.txt",
+            "bucketname": "cohorte-abril-98a56bb4",
+        },
+        dag=dag,
+    )
 
     # Describo el orden de ejecución en el DAG
     extract_task >> transform_task >> load_task
