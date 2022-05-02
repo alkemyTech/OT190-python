@@ -25,7 +25,6 @@ log = logging.getLogger(__name__)
 # Path para descargar los archivos .csv
 path_d = pathlib.Path.joinpath(path_p, "files")
 
-
 def query_to_csv(sql_file, filename):
     """
     Ejecuta la query descripta en sql_file y guarda el resultado con el nombre de archivo filename
@@ -38,6 +37,7 @@ def query_to_csv(sql_file, filename):
         os.mkdir(path_d)
 
     log.debug("Conectando con la base de datos")
+
     pg_hook = PostgresHook(
         postgres_conn_id="db_alkemy_universidades", schema="training"
     )

@@ -25,7 +25,6 @@ log = logging.getLogger(__name__)
 # Path para descargar los archivos .csv
 path_d = pathlib.Path.joinpath(path_p, "files")
 
-
 def query_to_csv(sql_file, filename):
     """
     Ejecuta la query descripta en sql_file y guarda el resultado con el nombre de archivo filename
@@ -38,6 +37,7 @@ def query_to_csv(sql_file, filename):
         os.mkdir(path_d)
 
     log.info("Conectando con la base de datos")
+
     pg_hook = PostgresHook(
         postgres_conn_id="db_alkemy_universidades", schema="training"
     )
@@ -141,6 +141,7 @@ def normalize_data(csv_filename, path):
     return df_univ
 
 
+
 default_args = {"owner": "airflow", "retries": 5, "retry_delay": timedelta(seconds=30)}
 
 with DAG(
@@ -169,6 +170,7 @@ with DAG(
         python_callable=normalize_data,
         dag=dag,
         op_kwargs={"csv_filename": "universidad_nacional_de_jujuy"},
+
     )
 
     load_task = DummyOperator(task_id="load_task", dag=dag)
