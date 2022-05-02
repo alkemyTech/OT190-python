@@ -21,6 +21,13 @@ logger = logging.getLogger('DAG - Universidad del Cine')
 
 
 def extract():
+<<<<<<< HEAD
+=======
+    """
+    Funcion responsable de descargar datos y almacenarlos
+    dentro de la carpeta files
+    """
+>>>>>>> 7cf399a0589b2c99e0f32bb84788f46f5fdc9519
     file = 'Universidad_del_Cine'
     # Leyendo script.sql
     logger.info(f'Leyendo SQL_{file}.sql')
@@ -45,7 +52,13 @@ def extract():
 
 
 def transform_data():
-    logger.info('Transform data')
+    """
+    Funcion responsable de leer los datos,
+    procesarlos y guardarlos en la carpeta dataframe
+    """
+    file = "Universidad_del_Cine"
+    logger.info('Transformando datos')
+    logger.info('Datos guardados')
     pass
 
 
