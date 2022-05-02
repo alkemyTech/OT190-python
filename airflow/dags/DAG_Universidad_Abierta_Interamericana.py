@@ -64,6 +64,10 @@ def logging_init():
     logger.info('Inicio de ejecución de DAG')
 
 
+def transform_data():
+    pass
+
+
 with DAG(
     'DAG_Universidad_Abierta_Interamericana',
     schedule_interval='@hourly',
@@ -88,12 +92,11 @@ with DAG(
         csv=f'{parent_path}/files/Universidad_Abierta_Interamericana.csv',
     )
 
-    # Procesamiento de datos con pandas y guardar los datos en S3
-    # Posibles operadores: PythonOperator
-    # S3Hook
-    transform_task = DummyOperator(
+    # Procesamiento de datos con pandas
+    transform_task = PythonOperator(
         task_id='transform_task',
         depends_on_past=True,
+        python_callable=transform_data,
     )
 
     # Carga de datos en S3

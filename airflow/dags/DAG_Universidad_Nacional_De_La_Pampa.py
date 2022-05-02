@@ -64,6 +64,10 @@ def logging_init():
     logger.info('Inicio de ejecución de DAG')
 
 
+def transform_data():
+    pass
+
+
 with DAG(
     'DAG_Universidad_Nacional_De_La_Pampa',
     schedule_interval='@hourly',
@@ -89,10 +93,10 @@ with DAG(
     )
 
     # Procesamiento de datos con pandas
-    # Posibles operadores: PythonOperator
-    transform_task = DummyOperator(
+    transform_task = PythonOperator(
         task_id='transform_task',
         depends_on_past=True,
+        python_callable=transform_data,
     )
 
     # Carga de datos en S3
