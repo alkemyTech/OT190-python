@@ -64,8 +64,100 @@ def logging_init():
     logger.info('Inicio de ejecución de DAG')
 
 
-def transform_data():
-    pass
+def separate_fullname(fullname):
+    '''
+    Retorna nombre y apellido de una cadena con nombre completo
+    '''
+
+    fullname_list = fullname.split()
+    fullname_len = len(fullname_list)
+
+    if (fullname_len % 2) != 0:
+        if len(fullname_list[-1]) < 4:
+            fullname_len -= 1
+        else:
+            fullname_len += 1
+
+    first_name = " ".join(fullname_list[:fullname_len//2])
+    last_name = " ".join(fullname_list[fullname_len//2:])
+
+    return first_name, last_name
+
+
+def clean_str(x):
+    string = x.replace('-', ' ')
+    string = string.strip()
+    string = string.lower()
+    return string
+
+
+def calculate_age(diff_bday):
+    '''
+    Calcula la edad a partie del timedelta pasado por parametro
+    '''
+
+    days = diff_bday.days
+    if days < 0:
+        days += 100
+
+    return int(days / 365.2425)
+
+
+def transform_data(file_from, file_to):
+    '''
+    Función de transformacion y normalización de datos.
+    '''
+
+    import pandas as pd
+
+    dtf = '%y/%b/%d'
+
+    # Codigos postales
+    cp_df = pd.read_csv(f'{parent_path}/assets/codigos_postales.csv')
+
+    cp_df.rename(
+        columns={'codigo_postal': 'postal_code', 'localidad': 'location'},
+        inplace=True
+    )
+
+    cp_df['location'] = cp_df['location'].str.lower()
+
+    # Transformación de los datos
+    df = pd.read_csv(file_from)
+
+    df['university'] = df['university'].apply(clean_str)
+    df['career'] = df['career'].apply(clean_str)
+    df['first_name'] = df['first_name'].apply(clean_str)
+
+    fullname = df['first_name'].apply(separate_fullname)
+    df['first_name'] = fullname.apply(lambda x: x[0])
+    df['last_name'] = fullname.apply(lambda x: x[-1])
+
+    df['inscription_date'] = pd.to_datetime(
+        df['inscription_date'],
+        format=dtf
+    )
+
+    df['age'] = pd.to_datetime(df['age'], format=dtf)
+    df['age'] = df['inscription_date'] - df['age']
+    df['age'] = df['age'].apply(calculate_age)
+
+    df['gender'] = df.gender.replace({'F': 'female', 'M': 'male'})
+
+    df['email'] = df.email.apply(lambda x: x.strip().lower())
+
+    df.drop(['location'], axis=1, inplace=True)
+    df.rename(columns={'postal_code': 'location'}, inplace=True)
+
+    df = df.merge(cp_df, how='left', on='location')
+
+    # Guardado de los datos procesados
+    columns = [
+        'university', 'career', 'inscription_date', 'first_name', 'last_name',
+        'gender', 'age', 'postal_code', 'location', 'email'
+    ]
+
+    df.to_csv(file_to, columns=columns, index=False)
 
 
 with DAG(
@@ -89,14 +181,17 @@ with DAG(
         retries=5,
         postgres_conn_id='db_alkemy_universidades',
         sql="SQL_Universidad_Abierta_Interamericana.sql",
-        csv=f'{parent_path}/files/Universidad_Abierta_Interamericana.csv',
+        csv=f'{parent_path}/files/universidad_abierta_interamericana.csv',
     )
 
     # Procesamiento de datos con pandas
     transform_task = PythonOperator(
         task_id='transform_task',
-        depends_on_past=True,
         python_callable=transform_data,
+        op_kwargs={
+            'file_from': f'{parent_path}/files/universidad_abierta_interamericana.csv',
+            'file_to': f'{parent_path}/datasets/universidad_abierta_interamericana.txt'
+        },
     )
 
     # Carga de datos en S3
