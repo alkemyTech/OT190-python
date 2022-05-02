@@ -88,3 +88,4 @@ with DAG(
 
     # Describo el orden de ejecución en el DAG
     extract_task >> transform_task >> load_task
+
