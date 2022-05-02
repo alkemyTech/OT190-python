@@ -25,7 +25,6 @@ log = logging.getLogger(__name__)
 # Path para descargar los archivos .csv
 path_d = pathlib.Path.joinpath(path_p, "files")
 
-
 def query_to_csv(sql_file, filename):
     """
     Ejecuta la query descripta en sql_file y guarda el resultado con el nombre de archivo filename
@@ -34,20 +33,28 @@ def query_to_csv(sql_file, filename):
     try:
         os.stat(path_d)
     except:
+        log.debug('Creando directorio files')
         os.mkdir(path_d)
 
+    log.debug('Conectando con la base de datos')
     pg_hook = PostgresHook(
         postgres_conn_id="db_alkemy_universidades", schema="training"
     )
-    connection = pg_hook.get_conn()
-    cursor = connection.cursor()
 
-    university_sql = open(f"{path_p}/include/{sql_file}", "r")
+    try:
+        university_sql = open(f"{path_p}/include/{sql_file}", "r").read()
+    except Exception as e:
+        log.error(f'Error: {e}')
+    
+    log.debug('Ejecutando consulta sql y obteniendo resultado')
+    pandas_df = pg_hook.get_pandas_df(sql=university_sql)
 
-    university_query = university_sql.read()
+    log.debug(f'Guardando resultado como {filename}')
+    pandas_df.to_csv(f"{path_d}/{filename}")
 
-    university_df = pd.read_sql(university_query, connection)
-    university_df.to_csv(f"{path_d}/{filename}")
+
+def normalize_data():
+    pass
 
 
 default_args = {"owner": "airflow", "retries": 5, "retry_delay": timedelta(seconds=30)}
@@ -73,7 +80,9 @@ with DAG(
         dag=dag
     )
 
-    transform_task = DummyOperator(task_id="transform_task", dag=dag)
+    transform_task = PythonOperator(
+        task_id="transform_task", python_callable=normalize_data, dag=dag
+    )
 
     load_task = DummyOperator(task_id="load_task", dag=dag)
 
