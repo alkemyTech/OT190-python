@@ -53,6 +53,7 @@ def query_to_csv(sql_file, filename):
     log.info(f"Guardando resultado como {filename}")
     pandas_df.to_csv(f"{path_d}/{filename}")
 
+
 def normalize_strings(columna):
     """
     Dada una columna, normaliza los strings a
@@ -60,18 +61,19 @@ def normalize_strings(columna):
     """
     try:
         columna = columna.apply(lambda x: str(x).strip())
-        columna = columna.apply(lambda x: str(x).replace('-', ' '))
-        columna = columna.apply(lambda x: str(x).replace('_', ' '))
+        columna = columna.apply(lambda x: str(x).replace("-", " "))
+        columna = columna.apply(lambda x: str(x).replace("_", " "))
         columna = columna.apply(lambda x: x.lower())
     except:
-        log.error('Error al querer normalizar los caracteres')
+        log.error("Error al querer normalizar los caracteres")
     return columna
+
 
 def normalize_data(csv_filename, path):
     """
     Normaliza los datos del .csv pasado por parámetro y los guarda en un .txt
     """
-    
+
     log.info("Leyendo datos del csv")
     df_univ = pd.read_csv(f"{path_d}/{csv_filename}.csv")
 
@@ -83,28 +85,29 @@ def normalize_data(csv_filename, path):
     df_univ["career"] = normalize_strings(df_univ["career"])
 
     # inscription_date: str %Y-%m-%d format
-    old_date = pd.to_datetime(df_univ['inscription_date'])
-    df_univ['inscription_date'] = pd.to_datetime(old_date, '%Y-%m-%d')
+    old_date = pd.to_datetime(df_univ["inscription_date"])
+    df_univ["inscription_date"] = pd.to_datetime(old_date, "%Y-%m-%d")
 
     # first_name: str minúscula y sin espacios, ni guiones
     # last_name: str minúscula y sin espacios, ni guiones
-    df_univ['names'] = normalize_strings(df_univ['nombre'])
+    df_univ["names"] = normalize_strings(df_univ["nombre"])
     try:
-        df_univ['first_name'] = df_univ['names'].apply(lambda x: str(x).split(' ')[0])
-        df_univ['last_name'] = df_univ['names'].apply(lambda x: str(x).split(' ')[1])
+        df_univ["first_name"] = df_univ["names"].apply(lambda x: str(x).split(" ")[0])
+        df_univ["last_name"] = df_univ["names"].apply(lambda x: str(x).split(" ")[1])
     except:
-        df_univ['first_name'] = 'NULL'
-        df_univ['last_name'] = df_univ['names']
+        df_univ["first_name"] = "NULL"
+        df_univ["last_name"] = df_univ["names"]
 
     # gender: str choice(male, female)
-    df_univ['sexo'] = normalize_strings(df_univ['sexo'])
+    df_univ["sexo"] = normalize_strings(df_univ["sexo"])
     dict_gender = {"f": "female", "m": "male"}
     df_univ["gender"] = df_univ["sexo"].map(dict_gender)
 
     # age: int
     today = datetime.now()
-    df_univ['age'] = df_univ['birth_date'].apply(lambda x: (
-        today.year - datetime.strptime(str(x), '%Y/%m/%d').year))
+    df_univ["age"] = df_univ["birth_date"].apply(
+        lambda x: (today.year - datetime.strptime(str(x), "%Y/%m/%d").year)
+    )
 
     # location: str minúscula sin espacios extras, ni guiones
     df_univ["location"] = normalize_strings(df_univ["location"])

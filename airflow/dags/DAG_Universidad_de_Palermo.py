@@ -61,11 +61,11 @@ def normalize_strings(columna):
     """
     try:
         columna = columna.apply(lambda x: str(x).strip())
-        columna = columna.apply(lambda x: str(x).replace('-', ' '))
-        columna = columna.apply(lambda x: str(x).replace('_', ' '))
+        columna = columna.apply(lambda x: str(x).replace("-", " "))
+        columna = columna.apply(lambda x: str(x).replace("_", " "))
         columna = columna.apply(lambda x: x.lower())
     except:
-        log.error('Error al querer normalizar los caracteres')
+        log.error("Error al querer normalizar los caracteres")
     return columna
 
 
@@ -84,29 +84,29 @@ def normalize_data(csv_filename):
     df_univ["career"] = normalize_strings(df_univ["careers"])
 
     # inscription_date: str %Y-%m-%d format
-    old_date = pd.to_datetime(df_univ['fecha_de_inscripcion'])
-    df_univ['inscription_date'] = pd.to_datetime(old_date, '%Y-%m-%d')
+    old_date = pd.to_datetime(df_univ["fecha_de_inscripcion"])
+    df_univ["inscription_date"] = pd.to_datetime(old_date, "%Y-%m-%d")
 
     # first_name: str minúscula y sin espacios, ni guiones
     # last_name: str minúscula y sin espacios, ni guiones
-    df_univ['names'] = normalize_strings(df_univ['names'])
+    df_univ["names"] = normalize_strings(df_univ["names"])
     try:
-        df_univ['first_name'] = df_univ['names'].apply(lambda x: str(x).split(' ')[0])
-        df_univ['last_name'] = df_univ['names'].apply(lambda x: str(x).split(' ')[1])
+        df_univ["first_name"] = df_univ["names"].apply(lambda x: str(x).split(" ")[0])
+        df_univ["last_name"] = df_univ["names"].apply(lambda x: str(x).split(" ")[1])
     except:
-        df_univ['first_name'] = 'NULL'
-        df_univ['last_name'] = df_univ['names']
-
+        df_univ["first_name"] = "NULL"
+        df_univ["last_name"] = df_univ["names"]
 
     # gender: str choice(male, female)
-    df_univ['sexo'] = normalize_strings(df_univ['sexo'])
+    df_univ["sexo"] = normalize_strings(df_univ["sexo"])
     dict_gender = {"f": "female", "m": "male"}
     df_univ["gender"] = df_univ["sexo"].map(dict_gender)
 
     # age: int
     today = datetime.now()
-    df_univ['age'] = df_univ['birth_dates'].apply(lambda x: (
-        100+(int(str(today.year)[2:4]) - int(x[7:9]))))
+    df_univ["age"] = df_univ["birth_dates"].apply(
+        lambda x: (100 + (int(str(today.year)[2:4]) - int(x[7:9])))
+    )
 
     # postal_code: str
     df_univ["postal_code"] = df_univ["codigo_postal"].astype(str)
