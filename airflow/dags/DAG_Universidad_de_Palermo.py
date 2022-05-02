@@ -7,6 +7,7 @@ import logging
 import pathlib
 import os
 import pandas as pd
+import numpy as np
 
 # Busqueda del path donde se está ejecutando el archivo, subimos un nivel
 # para situarnos en la carpeta airflow
@@ -24,6 +25,7 @@ log = logging.getLogger(__name__)
 
 # Path para descargar los archivos .csv
 path_d = pathlib.Path.joinpath(path_p, "files")
+
 
 def query_to_csv(sql_file, filename):
     """
@@ -103,10 +105,16 @@ def normalize_data(csv_filename):
     df_univ["gender"] = df_univ["sexo"].map(dict_gender)
 
     # age: int
-    today = datetime.now()
-    df_univ["age"] = df_univ["birth_dates"].apply(
-        lambda x: (100 + (int(str(today.year)[2:4]) - int(x[7:9])))
+    df_univ["birth_dates"] = df_univ["birth_dates"].apply(
+        lambda x: datetime.strptime(x, "%d/%b/%y").strftime("%Y-%m-%d")
     )
+    df_univ["birth_dates"] = pd.to_datetime(df_univ["birth_dates"])
+    df_univ["birth_dates"] = df_univ["birth_dates"].apply(
+        lambda x: x.replace(year=x.year - 100) if x.year > 2005 else x
+    )
+    df_univ["age"] = (
+        (df_univ["inscription_date"] - df_univ["birth_dates"]) / np.timedelta64(1, "Y")
+    ).astype(int)
 
     # postal_code: str
     df_univ["postal_code"] = df_univ["codigo_postal"].astype(str)

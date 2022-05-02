@@ -7,6 +7,7 @@ import os
 import logging
 import pathlib
 import pandas as pd
+import numpy as np
 
 # Busqueda del path donde se está ejecutando el archivo, subimos un nivel para
 # situarnos en la carpeta airflow
@@ -24,6 +25,7 @@ log = logging.getLogger(__name__)
 
 # Path para descargar los archivos .csv
 path_d = pathlib.Path.joinpath(path_p, "files")
+
 
 def query_to_csv(sql_file, filename):
     """
@@ -69,7 +71,7 @@ def normalize_strings(columna):
     return columna
 
 
-def normalize_data(csv_filename, path):
+def normalize_data(csv_filename):
     """
     Normaliza los datos del .csv pasado por parámetro y los guarda en un .txt
     """
@@ -104,10 +106,10 @@ def normalize_data(csv_filename, path):
     df_univ["gender"] = df_univ["sexo"].map(dict_gender)
 
     # age: int
-    today = datetime.now()
-    df_univ["age"] = df_univ["birth_date"].apply(
-        lambda x: (today.year - datetime.strptime(str(x), "%Y/%m/%d").year)
-    )
+    df_univ["birth_date"] = pd.to_datetime(df_univ["birth_date"], format="%Y-%m-%d")
+    df_univ["age"] = (
+        (df_univ["inscription_date"] - df_univ["birth_date"]) / np.timedelta64(1, "Y")
+    ).astype(int)
 
     # location: str minúscula sin espacios extras, ni guiones
     df_univ["location"] = normalize_strings(df_univ["location"])
@@ -141,7 +143,6 @@ def normalize_data(csv_filename, path):
     return df_univ
 
 
-
 default_args = {"owner": "airflow", "retries": 5, "retry_delay": timedelta(seconds=30)}
 
 with DAG(
@@ -170,7 +171,6 @@ with DAG(
         python_callable=normalize_data,
         dag=dag,
         op_kwargs={"csv_filename": "universidad_nacional_de_jujuy"},
-
     )
 
     load_task = DummyOperator(task_id="load_task", dag=dag)
