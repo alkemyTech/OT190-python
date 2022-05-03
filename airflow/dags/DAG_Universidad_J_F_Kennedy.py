@@ -1,4 +1,5 @@
-#Implementar SQL Operator para la Universidad J.F Kennedy
+
+#Implementar el Python Operator para la Universidad J.F Kennedy
 
 import os
 import logging
@@ -53,6 +54,11 @@ def extract_data_sql():
 
 
 
+def transform_data():
+    #Process data obtained from SQL query
+    pass
+
+
 #Default settings applied to all tasks
 default_args = {
     'retries': 5,
@@ -73,14 +79,14 @@ with DAG(
     logging_dag = PythonOperator(task_id='logging_dag', python_callable=logging_dags)
 
     #Extract data SQL query to Postgres database
-    #It is proposed to use PostgresOperator
 
     extract_data = PythonOperator(task_id='extract_data',
                                   python_callable=extract_data_sql)
 
     #Process data with pandas
-    #It is proposed to use PythonOperator
-    process_data= DummyOperator(task_id='process_data')
+    process_data = PythonOperator(task_id='process_data', 
+                                python_callable=transform_data)
+
 
 
     #Load data to S3
