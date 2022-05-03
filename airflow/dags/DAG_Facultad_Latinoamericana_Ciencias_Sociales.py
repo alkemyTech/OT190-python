@@ -1,4 +1,4 @@
-#Implementar SQL Operator para la Facultad Latinoamericana de Ciencias Sociales
+#Implementar el Python Operator para la Facultad Latinoamericana de Ciencias Sociales
 import os
 import logging
 import csv
@@ -50,6 +50,11 @@ def extract_data_sql():
             writer.writerow([source[0], source[1], source[2], source[3], source[4], source[5], source[6], source[7]])
 
 
+def transform_data():
+    #Process data obtained from SQL query
+    pass
+
+
 #Default settings applied to all tasks
 default_args = {
     'retries': 5,
@@ -70,15 +75,13 @@ with DAG(
     logging_dag = PythonOperator(task_id='logging_dag', python_callable=logging_dags)
 
     #Extract data SQL query to Postgres database
-    #It is proposed to use PostgresOperator
-
     extract_data = PythonOperator(task_id='extract_data',
                                   python_callable=extract_data_sql)
 
 
     #Process data with pandas
-    #It is proposed to use PythonOperator
-    process_data= DummyOperator(task_id='process_data')
+    process_data= PythonOperator(task_id='process_data', 
+                                python_callable=transform_data)
 
 
     #Load data to S3
