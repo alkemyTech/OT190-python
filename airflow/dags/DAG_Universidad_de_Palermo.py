@@ -1,12 +1,13 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
 from airflow.hooks.postgres_hook import PostgresHook
+from airflow.hooks.S3_hook import S3Hook
 import logging
 import pathlib
 import os
 import pandas as pd
+import numpy as np
 
 # Busqueda del path donde se está ejecutando el archivo, subimos un nivel
 # para situarnos en la carpeta airflow
@@ -24,6 +25,7 @@ log = logging.getLogger(__name__)
 
 # Path para descargar los archivos .csv
 path_d = pathlib.Path.joinpath(path_p, "files")
+
 
 def query_to_csv(sql_file, filename):
     """
@@ -103,10 +105,16 @@ def normalize_data(csv_filename):
     df_univ["gender"] = df_univ["sexo"].map(dict_gender)
 
     # age: int
-    today = datetime.now()
-    df_univ["age"] = df_univ["birth_dates"].apply(
-        lambda x: (100 + (int(str(today.year)[2:4]) - int(x[7:9])))
+    df_univ["birth_dates"] = df_univ["birth_dates"].apply(
+        lambda x: datetime.strptime(x, "%d/%b/%y").strftime("%Y-%m-%d")
     )
+    df_univ["birth_dates"] = pd.to_datetime(df_univ["birth_dates"])
+    df_univ["birth_dates"] = df_univ["birth_dates"].apply(
+        lambda x: x.replace(year=x.year - 100) if x.year > 2005 else x
+    )
+    df_univ["age"] = (
+        (df_univ["inscription_date"] - df_univ["birth_dates"]) / np.timedelta64(1, "Y")
+    ).astype(int)
 
     # postal_code: str
     df_univ["postal_code"] = df_univ["codigo_postal"].astype(str)
@@ -137,7 +145,19 @@ def normalize_data(csv_filename):
     ]
     log.info(f"Guardando archivo transformado en: datasets/{csv_filename}.txt")
     df_univ.to_csv(f"{path_p}/datasets/{csv_filename}.txt", sep="\t")
-    return df_univ
+
+
+def upload_to_S3(filename, key, bucketname):
+    """
+    Sube el archivo a S3
+    """
+    log.info(f"Intentando subir archivo {filename} a S3")
+    try:
+        hook = S3Hook("s3_conn")
+        hook.load_file(filename=filename, key=key, bucket_name=bucketname, replace=True)
+    except Exception as e:
+        log.error(f"No se pudo subir el archivo a S3: {e}")
+    log.info(f"Archivo subido a S3")
 
 
 default_args = {"owner": "airflow", "retries": 5, "retry_delay": timedelta(seconds=30)}
@@ -170,7 +190,15 @@ with DAG(
         op_kwargs={"csv_filename": "universidad_de_palermo"},
     )
 
-    load_task = DummyOperator(task_id="load_task", dag=dag)
-
+    load_task = PythonOperator(
+        task_id="load_task",
+        python_callable=upload_to_S3,
+        op_kwargs={
+            "filename": os.path.join(path_p, "datasets/universidad_de_palermo.txt"),
+            "key": "universidad_de_palermo.txt",
+            "bucketname": "cohorte-abril-98a56bb4",
+        },
+        dag=dag,
+    )
     # Describo el orden de ejecución en el DAG
     extract_task >> transform_task >> load_task
