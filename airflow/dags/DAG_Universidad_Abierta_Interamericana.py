@@ -78,7 +78,7 @@ def calculate_age(diff_bday):
 
     days = diff_bday.days
     if days < 0:
-        days += 100
+        days += int(100 * 365.2425)
 
     return int(days / 365.2425)
 
@@ -128,6 +128,7 @@ def transform_data(file_from, file_to):
 
     df.drop(['location'], axis=1, inplace=True)
     df.rename(columns={'postal_code': 'location'}, inplace=True)
+    df['location'] = df['location'].apply(clean_str)
 
     df = df.merge(cp_df, how='left', on='location')
 
