@@ -1,3 +1,4 @@
+
 #Implementar el Python Operator para la Universidad J.F Kennedy
 
 import os
@@ -52,6 +53,7 @@ def extract_data_sql():
             writer.writerow([source[0], source[1], source[2], source[3], source[4], source[5], source[6], source[7]])
 
 
+
 def transform_data():
     #Process data obtained from SQL query
     pass
@@ -77,12 +79,14 @@ with DAG(
     logging_dag = PythonOperator(task_id='logging_dag', python_callable=logging_dags)
 
     #Extract data SQL query to Postgres database
+
     extract_data = PythonOperator(task_id='extract_data',
                                   python_callable=extract_data_sql)
 
     #Process data with pandas
     process_data = PythonOperator(task_id='process_data', 
                                 python_callable=transform_data)
+
 
 
     #Load data to S3
