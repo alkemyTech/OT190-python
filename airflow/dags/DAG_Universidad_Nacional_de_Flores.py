@@ -19,8 +19,11 @@ PARENT_PATH = (pathlib.Path(__file__).parent.absolute()).parent
 POSTGRES_CONN_ID = 'db_alkemy_universidades'
 
 #Elegir archivo .sql de la carpeta /includes/
-TEMPLATE_LOCATION = f'{PARENT_PATH}/includes/'
+TEMPLATE_LOCATION = f'{PARENT_PATH}/include'
 TEMPLATE_NAME = 'SQL_Universidad_De_Flores.sql'
+
+#Preparar nombre para archivo .csv en base a nombre del archivo sql
+CSV_NAME = f'{TEMPLATE_NAME.split("SQL_")[1].split(".")[0]}.csv'
 
 #Pasar .sql a string y sacar punto y coma final: 'being a psql command, it is not terminated by a semicolon'
 QUERY = open(f'{TEMPLATE_LOCATION}/{TEMPLATE_NAME}', "r").read().replace(';', '')
@@ -36,7 +39,7 @@ default_args = {
 def pg_extract(copy_sql):
     pg_hook = PostgresHook.get_hook(POSTGRES_CONN_ID)
     logging.info('Exporting query to file')
-    pg_hook.copy_expert(copy_sql, filename=f"{PARENT_PATH}/files/{pathlib.Path(TEMPLATE_NAME).stem}.csv")
+    pg_hook.copy_expert(copy_sql, filename=f"{PARENT_PATH}/files/{CSV_NAME}")
 
 #Configurar DAG
 with DAG(
