@@ -64,26 +64,6 @@ def logging_init():
     logger.info('Inicio de ejecución de DAG')
 
 
-def separate_fullname(fullname):
-    '''
-    Retorna nombre y apellido de una cadena con nombre completo
-    '''
-
-    fullname_list = fullname.split()
-    fullname_len = len(fullname_list)
-
-    if (fullname_len % 2) != 0:
-        if len(fullname_list[-1]) < 4:
-            fullname_len -= 1
-        else:
-            fullname_len += 1
-
-    first_name = " ".join(fullname_list[:fullname_len//2])
-    last_name = " ".join(fullname_list[fullname_len//2:])
-
-    return first_name, last_name
-
-
 def clean_str(x):
     string = x.replace('-', ' ')
     string = string.strip()
@@ -128,10 +108,10 @@ def transform_data(file_from, file_to):
     df['university'] = df['university'].apply(clean_str)
     df['career'] = df['career'].apply(clean_str)
     df['first_name'] = df['first_name'].apply(clean_str)
-
-    fullname = df['first_name'].apply(separate_fullname)
-    df['first_name'] = fullname.apply(lambda x: x[0])
-    df['last_name'] = fullname.apply(lambda x: x[-1])
+    df.rename(
+        columns={'first_name': 'last_name', 'last_name': 'first_name'},
+        inplace=True,
+    )
 
     df['inscription_date'] = pd.to_datetime(
         df['inscription_date'],
