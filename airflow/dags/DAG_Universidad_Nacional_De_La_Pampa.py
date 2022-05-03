@@ -78,7 +78,7 @@ def calculate_age(diff_bday):
 
     days = diff_bday.days
     if days < 0:
-        days += 100
+        days += int(100 * 365.2425)
 
     return int(days / 365.2425)
 
