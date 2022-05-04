@@ -106,7 +106,7 @@ def save_df_text(df, file_name:str):
     Guarda el dataframe en un archivo con el mismo nombre
     del string pasado en {file_name}.txt en la carpeta dataset
     """
-    with open(f'{root_folder}/dataset/{file_name}.txt', 'w+') as f:
+    with open(f'{root_folder}/datasets/{file_name}.txt', 'w+') as f:
         f.write(df.to_string())
         f.close()
 
