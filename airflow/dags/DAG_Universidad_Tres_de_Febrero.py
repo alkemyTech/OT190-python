@@ -8,14 +8,10 @@ from data_transformer import *
 from airflow import DAG
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.operators.postgres_operator import PostgresOperator
+from airflow.hooks.S3_hook import S3Hook
 from airflow.operators.python import PythonOperator
 
-""" DAG structure, retries and logs config. Perform ETL for
-    Universidad Tres de Febrero.
-    TODO:
-        - Transform: Python Operator (pandas)
-        - Load: Python Operator (S3)
-"""
+""" DAG performs ETL for Universidad Tres de Febrero. """
 
 # Logs config
 logging.basicConfig(
@@ -84,9 +80,17 @@ def transform_data(file_name_):
     data_trans.transformFile(asset_path, txt_file_path)
 
 
+def load_to_s3(file_name_, bucket_name):
 
-def load_to_s3():
-    pass
+    file_name = f'{file_name_.lower()}.txt'
+    file_path = f'{path_p}/dataset/{file_name}' # refactor...
+
+    hook = S3Hook('aws_alkemy_universidades')
+    hook.load_file(
+        filename=file_path, # wich file
+        key=file_name, # wich file name in s3
+        bucket_name=bucket_name
+        )
 
 
 default_args = {
@@ -97,7 +101,7 @@ default_args = {
 
 with DAG(
     "DAG_Universidad_Tres_de_Febrero",
-    description='DAG ET',
+    description='DAG ETL',
     default_args=default_args,
     template_searchpath=f'{path_p}/airflow/include',
     start_date=datetime(2021, 4, 22),
@@ -118,7 +122,10 @@ with DAG(
 
         load = PythonOperator(
             task_id="load",
-            python_callable=load_to_s3
-        )
-
+            python_callable=load_to_s3,
+            op_kwargs={
+            'filename': 'Universidad_Tres_de_Febrero',
+            'bucket_name': 'cohorte-abril-98a56bb4'
+        }
+    )
         extract >> transform >> load
