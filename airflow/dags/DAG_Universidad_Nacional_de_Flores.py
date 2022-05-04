@@ -1,37 +1,73 @@
-import airflow
+import logging
+import pathlib
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.operators.dummy import DummyOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
+from airflow.operators.python import PythonOperator
 
+#Configuracion de logging
+logger = logging.getLogger("dag_univ_nac_flores")
+FORMAT = '%(asctime)-%(levelname)-%(message)s'
+DATEFORMAT = '%Y-%m-%d'
+logging.basicConfig(format=FORMAT, datefmt=DATEFORMAT, level=logging.DEBUG)
+
+#Obtener parent path para luego configurar el template_searchpath
+PARENT_PATH = (pathlib.Path(__file__).parent.absolute()).parent
+
+#Setear conn_id (se podria obtener de varibles)
+POSTGRES_CONN_ID = 'db_alkemy_universidades'
+
+#Elegir archivo .sql de la carpeta /includes/
+TEMPLATE_LOCATION = f'{PARENT_PATH}/include'
+TEMPLATE_NAME = 'SQL_Universidad_De_Flores.sql'
+
+#Preparar nombre para archivo .csv en base a nombre del archivo sql
+CSV_NAME = f'{TEMPLATE_NAME.split("SQL_")[1].split(".")[0]}.csv'
+
+#Pasar .sql a string y sacar punto y coma final: 'being a psql command, it is not terminated by a semicolon'
+QUERY = open(f'{TEMPLATE_LOCATION}/{TEMPLATE_NAME}', "r").read().replace(';', '')
+
+#Argumentos predeterminados para configuracion
 default_args = {
     'owner': 'airflow',    
     'retries': 5,
     'retry_delay': timedelta(minutes=5),
 }
 
+#Query a .csv usando PostgresHook 
+def pg_extract(copy_sql):
+    pg_hook = PostgresHook.get_hook(POSTGRES_CONN_ID)
+    logging.info('Exporting query to file')
+    pg_hook.copy_expert(copy_sql, filename=f"{PARENT_PATH}/files/{CSV_NAME}")
+
+#Configurar DAG
 with DAG(
-    dag_id = "DAG_Universidad_Nacional_de_Flores",
+    dag_id="DAG_Universidad_Nacional_de_Flores",
     default_args=default_args,
     schedule_interval='@once',	
     dagrun_timeout=timedelta(minutes=60),
-    description='ETL para Universidad Nacional de Flores',
-    start_date = datetime(2022,4,25),
-    template_searchpath= '/home/wotw/airflow/includes/',
+    description='DAG para Universidad Nacional de Flores',
+    start_date = datetime(2022,4,25),    
     catchup=False) as dag:
 
-        query_database = PostgresOperator(
-            task_id = "query_database",
-            sql = 'SQL_Universidad_De_Flores.sql',
-            postgres_conn_id = "psql_rds_alkemy_universidades"            
-        )
+        query_database = PythonOperator(
+            task_id='pg_extract_task',
+            python_callable=pg_extract,
+            op_kwargs={
+                'copy_sql': f'COPY ({QUERY}) TO STDOUT WITH CSV HEADER'
+                }
+            )
 
+        #Placeholder transformar datos
         pandas_transform = DummyOperator(
             task_id = "pandas_transform"
         )
 
+        #Placeholder cargar datos
         load_to_s3 = DummyOperator(
             task_id = "load_to_s3"
         )
 
+        #Flujo de ejecución
         query_database >> pandas_transform >> load_to_s3
