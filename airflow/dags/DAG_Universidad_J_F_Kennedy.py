@@ -98,11 +98,18 @@ def transform_data(file_university):
     pandas_data['age'] = pd.to_datetime(pandas_data['age'], format='%Y/%m/%d')
     pandas_data['age'] = pandas_data['age'].apply(lambda x: relativedelta(datetime.now(),x).years)
 
+    #Generate column location
+    postal_location = pd.read_csv(f"{parent_path}/assets/codigos_postales.csv")
+    postal_location.columns = ['postal_code', 'location']
+    postal_location['postal_code'] = postal_location['postal_code'].apply(lambda x: str(x))
+    pandas_data =  pd.merge(left=pandas_data,right=postal_location, how='left', left_on='postal_code', right_on='postal_code')
+    pandas_data['location'] = (pandas_data['location'].str.replace("-", " ")).str.lower()
+   
     #Create folder FILES
     os.makedirs(f"{parent_path}/datasets", exist_ok=True)
 
     #Order Columns
-    pandas_data = pandas_data[['university', 'career', 'inscription_date','first_name', 'last_name', 'gender', 'age', 'postal_code', 'email']]
+    pandas_data = pandas_data[['university', 'career', 'inscription_date','first_name', 'last_name', 'gender', 'age', 'postal_code', 'location', 'email']]
     
     #Create txt file
     pandas_data.to_csv(txt_file, index=None, sep=' ', mode='a')

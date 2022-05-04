@@ -86,11 +86,18 @@ def transform_data(file_university):
     pandas_data["last_name"] = pandas_data["last_name"].str.split(" ", expand=True)[1]
     pandas_data['gender'] = (pandas_data['gender'].str.replace("M", "male")).str.replace("F","female")
     
+    #Generate column postal_code
+    postal_location = pd.read_csv(f"{parent_path}/assets/codigos_postales.csv")
+    postal_location.columns = ['postal_code', 'location']
+    postal_location['location'] = (postal_location['location'].str.replace("-", " ")).str.lower()
+    postal_location['postal_code'] = postal_location['postal_code'].apply(lambda x: str(x))
+    pandas_data =  pd.merge(left=pandas_data,right=postal_location, how='left', left_on='location', right_on='location')
+
     #Create folder FILES
     os.makedirs(f"{parent_path}/datasets", exist_ok=True)
 
     #Order Columns
-    pandas_data = pandas_data[['university', 'career', 'inscription_date','first_name', 'last_name', 'gender', 'age', 'location', 'email']]
+    pandas_data = pandas_data[['university', 'career', 'inscription_date','first_name', 'last_name', 'gender', 'age', 'postal_code', 'location', 'email']]
     
     #Create file txt
     pandas_data.to_csv(txt_file, index=None, sep=' ', mode='a')
