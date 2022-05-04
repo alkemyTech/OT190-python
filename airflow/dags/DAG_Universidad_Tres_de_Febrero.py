@@ -1,3 +1,4 @@
+
 import os
 from datetime import datetime, timedelta
 import logging
@@ -69,7 +70,6 @@ def extract_data(file_name_):
 
         logger.info('Writing done')
 
-
 def transform_data():
     pass
 
@@ -85,8 +85,9 @@ default_args = {
 }
 
 with DAG(
-    "DAG_SQL_Universidad_Tres_de_Febrero",
-    description='DAG SQL query ',
+    "DAG_Universidad_Tres_de_Febrero",
+    description='DAG SQL query',
+
     default_args=default_args,
     template_searchpath=f'{path_p}/airflow/include',
     start_date=datetime(2021, 4, 22),
