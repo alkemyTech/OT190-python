@@ -1,0 +1,67 @@
+default:
+  default_args:
+    owner: "default_owner"
+    start_date: 2022-05-04
+    retries: 5
+    retry_delay_sec: 30
+  concurrency: 1
+  max_active_runs: 1
+  schedule_interval: @hourly
+
+ETL_Universidad_de_Palermo:
+  default_args:
+    owner: "custom_owner"
+  description: "ETL DAG para la Universidad de Palermo"
+  schedule_interval: @hourly
+  tasks:
+    extract:
+      operator: airflow.operators.python_operator.PythonOperator
+      python_callable_name: query_to_csv
+      python_callable_file: .../OT190-python/airflow/lib/extract_universidades_c.py
+      op_kwargs:
+        sql_file: SQL_Universidad_de_Palermo.sql
+        filename: universidad_de_palermo.csv
+    transform:
+      operator: airflow.operators.python_operator.PythonOperator
+      python_callable_name: normalize_data
+      python_callable_file: .../OT190-python/airflow/lib/transform_universidades_c.py
+      op_kwargs:
+        csv_filename: universidad_de_palermo
+      dependencies: [extract]
+    load:
+      operator: airflow.operators.python_operator.PythonOperator
+      python_callable_name: upload_to_S3
+      python_callable_file: .../OT190-python/airflow/lib/load_universidades_c.py
+      op_kwargs:
+        filename: universidad_de_palermo.txt
+        key: universidad_de_palermo.txt
+      dependencies: [transform]
+
+ETL_Universidad_Nacional_de_Jujuy:
+  default_args:
+    owner: "custom_owner"
+  description: "ETL DAG para la Universidad Nacional de Jujuy"
+  schedule_interval: @hourly
+  tasks:
+    extract:
+      operator: airflow.operators.python_operator.PythonOperator
+      python_callable_name: query_to_csv
+      python_callable_file: .../OT190-python/airflow/lib/extract_universidades_c.py
+      op_kwargs:
+        sql_file: SQL_Universidad_Nacional_de_Jujuy.sql
+        filename: universidad_nacional_de_jujuy.csv
+    transform:
+      operator: airflow.operators.python_operator.PythonOperator
+      python_callable_name: normalize_data
+      python_callable_file: .../OT190-python/airflow/lib/transform_universidades_c.py
+      op_kwargs:
+        csv_filename: universidad_nacional_de_jujuy
+      dependencies: [extract]
+    load:
+      operator: airflow.operators.python_operator.PythonOperator
+      python_callable_name: upload_to_S3
+      python_callable_file: .../OT190-python/airflow/lib/load_universidades_c.py
+      op_kwargs:
+        filename: universidad_nacional_de_jujuy.txt
+        key: universidad_nacional_de_jujuy.txt
+      dependencies: [transform]
