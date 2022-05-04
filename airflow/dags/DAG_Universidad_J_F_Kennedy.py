@@ -47,14 +47,11 @@ def extract_data_sql(file_university):
     os.makedirs(f"{parent_path}/files", exist_ok=True)
 
     #Create csv file
-    with open(csv_file, mode="a") as file:
+    with open(csv_file, mode="w") as file:
         writer = csv.writer(file, delimiter=",")
         writer.writerow(['university', 'career', 'inscription_date', 'last_name', 'gender', 'age', 'postal_code', 'email'])
-        i = 0
         for source in sources:
-            print(i)
             writer.writerow([source[0], source[1], source[2], source[3], source[4], source[5], source[6], source[7]])
-            i+=1
 
 def transform_data(file_university):
 

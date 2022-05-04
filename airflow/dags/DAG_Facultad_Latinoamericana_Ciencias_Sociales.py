@@ -46,7 +46,7 @@ def extract_data_sql(file_university):
     os.makedirs(f"{parent_path}/files", exist_ok=True)
 
     #Create csv file
-    with open(csv_file, mode="a") as file:
+    with open(csv_file, mode="w") as file:
         writer = csv.writer(file, delimiter=",")
         writer.writerow(['university', 'career', 'inscription_date', 'last_name', 'gender', 'age', 'location', 'email'])
         for source in sources:
