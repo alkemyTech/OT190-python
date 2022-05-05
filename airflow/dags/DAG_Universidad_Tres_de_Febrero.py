@@ -1,17 +1,17 @@
 import os
-from datetime import datetime, timedelta
 import logging
 import pathlib
 import csv
-from data_transformer import *
+from datetime import datetime, timedelta
+from helpers.data_transformer import DataTransformer
 
 from airflow import DAG
 from airflow.hooks.postgres_hook import PostgresHook
-from airflow.operators.postgres_operator import PostgresOperator
-from airflow.hooks.S3_hook import S3Hook
 from airflow.operators.python import PythonOperator
 
-""" DAG performs ETL for Universidad Tres de Febrero. """
+
+""" DAG performs ET for Universidad Tres de Febrero. """
+
 
 # Logs config
 logging.basicConfig(
@@ -24,31 +24,24 @@ logger = logging.getLogger(__name__)
 path_p = (pathlib.Path(__file__).parent.absolute()).parent
 
 
-def dag_init():
-    logger.info('Iniciando DAG...')
-
-
 def extract_data(file_name_):
     """ Execute a query to a postgres database, then create and rewrite a .csv file
     """
 
-    # Sql
-    sql_file_path = f'{path_p}/include/SQL_{file_name_}.sql'
+    sql_file_path = f'{path_p}/include/SQL_{file_name_}.sql'  # Read from
+
     query = open(sql_file_path, "r")
     request = query.read()
-
     pg_hook = PostgresHook(
         postgres_conn_id="db_alkemy_universidades",
         schema="training"
     )
-
     connection = pg_hook.get_conn()
     cursor = connection.cursor()
     cursor.execute(request)
     records = cursor.fetchall()
 
-    # New .csv file
-    csv_path = f'{path_p}/files'
+    csv_path = f'{path_p}/files'  # Write records on
 
     if not os.path.isdir(csv_path):
         os.makedirs(csv_path)
@@ -80,17 +73,8 @@ def transform_data(file_name_):
     data_trans.transformFile(asset_path, txt_file_path)
 
 
-def load_to_s3(file_name_, bucket_name):
-
-    file_name = f'{file_name_.lower()}.txt'
-    file_path = f'{path_p}/dataset/{file_name}' # refactor...
-
-    hook = S3Hook('aws_alkemy_universidades')
-    hook.load_file(
-        filename=file_path, # wich file
-        key=file_name, # wich file name in s3
-        bucket_name=bucket_name
-        )
+def load_to_s3():
+    pass
 
 
 default_args = {
@@ -101,7 +85,7 @@ default_args = {
 
 with DAG(
     "DAG_Universidad_Tres_de_Febrero",
-    description='DAG ETL',
+    description='DAG ET',
     default_args=default_args,
     template_searchpath=f'{path_p}/airflow/include',
     start_date=datetime(2021, 4, 22),
@@ -122,10 +106,8 @@ with DAG(
 
         load = PythonOperator(
             task_id="load",
-            python_callable=load_to_s3,
-            op_kwargs={
-            'filename': 'Universidad_Tres_de_Febrero',
-            'bucket_name': 'cohorte-abril-98a56bb4'
-        }
-    )
+            python_callable=load_to_s3
+        )
+        
+    
         extract >> transform >> load
