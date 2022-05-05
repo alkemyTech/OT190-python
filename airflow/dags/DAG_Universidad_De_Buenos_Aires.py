@@ -9,6 +9,7 @@ import pandas as pd
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+from airflow.hooks.S3_hook import S3Hook
 
 
 sql_folder = Path(__file__).resolve().parent.parent
@@ -165,9 +166,20 @@ def transform_data():
     logger.info('Datos guardados')
 
 
-def load():
-    logger.info('Load data')
-    pass
+def load_to_s3(file_name:str, key: str, bucket_name: str):
+    """
+    Sube un archivo a s3
+    """
+    logger.info(f'Intentando Subir archivo {file_name}')
+    hook = S3Hook('aws_s3_alkemy_universidades')
+    logger.info('Subiendo archivo')
+    hook.load_file(
+        filename=file_name,
+        key=key,
+        bucket_name=bucket_name,
+        replace=True
+    )
+    logger.info('Archivo subido con exito')
 
 
 default_args = {
@@ -196,7 +208,12 @@ with DAG(
 
     load_task = PythonOperator(
         task_id="load_task",
-        python_callable=load
-        )
+        python_callable=load_to_s3,
+        op_kwargs={
+            'file_name': f'{root_folder}/datasets/universidad_de_buenos_aires.txt',
+            'key': 'posts.json',
+            'bucket_name': 'cohorte-abril-98a56bb4'
+        }
+    )
 
     extract_task >> transform_data_task >> load_task
