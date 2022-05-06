@@ -3,7 +3,6 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 import os
 import sys
-import logging
 import pathlib
 
 # Busqueda del path donde se está ejecutando el archivo, subimos un nivel para
@@ -14,20 +13,6 @@ sys.path.append(f"/{path_p}/plugins")
 from extract_universidades_c import query_to_csv
 from load_universidades_c import upload_to_S3
 from transform_universidades_c import normalize_data
-
-# Configuracion logging
-# Formato: %Y-%m-%d - nombre_logger - mensaje
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(message)s",
-    level=logging.DEBUG,
-    datefmt="%Y-%m-%d",
-)
-# Log con el nombre de archivo en que se encuentra
-log = logging.getLogger(__name__)
-
-# Path para descargar los archivos .csv
-path_d = pathlib.Path.joinpath(path_p, "files")
-
 
 default_args = {"owner": "airflow", "retries": 5, "retry_delay": timedelta(seconds=30)}
 
