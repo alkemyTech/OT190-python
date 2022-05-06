@@ -1,0 +1,10 @@
+{
+    "university": "Universidad Nacional de Jujuy",
+    "dag_id": "ETL_Universidad_Nacional_de_Jujuy",
+    "schedule_interval": "@hourly",
+    "sql_filepath": "SQL_Universidad_Nacional_de_Jujuy.sql",
+    "sql_filename": "universidad_nacional_de_jujuy.csv",
+    "csv_filename": "universidad_nacional_de_jujuy",
+    "s3_key": "universidad_nacional_de_jujuy.txt",
+    "load_filepath": "datasets/universidad_nacional_de_jujuy.txt"
+}

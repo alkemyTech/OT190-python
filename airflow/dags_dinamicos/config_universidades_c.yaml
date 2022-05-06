@@ -1,4 +1,0 @@
-dag_id: 'universidades_c'
-schedule_interval: '@hourly'
-catchup: False
-input: 2
