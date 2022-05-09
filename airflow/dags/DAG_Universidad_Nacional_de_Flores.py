@@ -38,7 +38,7 @@ def pg_extract(copy_sql):
 
 
 #DAG
-##############DAG###############
+
 #Argumentos predeterminados para configuracion
 default_args = {
     'owner': 'airflow',    
