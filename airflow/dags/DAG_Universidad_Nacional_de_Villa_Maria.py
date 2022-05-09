@@ -36,8 +36,8 @@ def pg_extract(copy_sql):
     logging.info('Exporting query to file')
     pg_hook.copy_expert(copy_sql, filename=f"{PARENT_PATH}/files/{CSV_NAME}")
 
-
 #DAG
+
 #Argumentos predeterminados para configuracion
 default_args = {
     'owner': 'airflow',    
