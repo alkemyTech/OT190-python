@@ -6,7 +6,7 @@ SELECT
 	SPLIT_PART(names,'-',2) last_name,
 	sexo AS gender,
 	birth_dates AS birth_date,
-	direccion AS location,
+	locations AS location,
 	emails AS email
 FROM 
 	public.lat_sociales_cine
