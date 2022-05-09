@@ -1,0 +1,4 @@
+dag_id: 'ETL_Universidad_de_Buenos_Aires'
+sql_file: 'Universidad_de_Buenos_Aires'
+file_name: 'universidad_de_buenos_aires'
+load_file: 'universidad_de_buenos_aires.txt'
