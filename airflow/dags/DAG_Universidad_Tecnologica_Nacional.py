@@ -1,21 +1,17 @@
-
 import os
 from datetime import datetime, timedelta
 import logging
 import pathlib
 import csv
+from helpers.data_transformer import DataTransformer
 
 from airflow import DAG
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.operators.postgres_operator import PostgresOperator
+from airflow.hooks.S3_hook import S3Hook
 from airflow.operators.python import PythonOperator
 
-""" DAG structure, retries and logs config. Perform ETL for
-    Universidad Tecnologica Nacional.
-    TODO:
-        - Transform: Python Operator (pandas)
-        - Load: Python Operator (S3)
-"""
+""" DAG performs ETL for Universidad Tecnologica Nacional. """
 
 # Logs config
 logging.basicConfig(
@@ -71,12 +67,31 @@ def extract_data(file_name_):
         logger.info('Writing done')
 
 
-def transform_data():
-    pass
+def transform_data(file_name_):
+    data_trans = DataTransformer(f'{path_p}/files/{file_name_}.csv')
+    
+    txt_path = f'{path_p}/dataset'
+
+    if not os.path.isdir(txt_path):
+        os.makedirs(txt_path)
+    
+    txt_file_path = f'{txt_path}/{file_name_.lower()}.txt'
+    asset_path = f'{path_p}/assets/codigos_postales.csv'
+    data_trans.transformFile(asset_path, txt_file_path)
 
 
-def load_to_s3():
-    pass
+def load_to_s3(file_name_, bucket_name):
+
+    file_name = f'{file_name_.lower()}.txt'
+    file_path = f'{path_p}/dataset/{file_name}' # refactor...
+
+    hook = S3Hook('aws_alkemy_universidades')
+    hook.load_file(
+        filename=file_path, # wich file
+        key=file_name, # wich file name in s3
+        bucket_name=bucket_name,
+        replace=True
+        )
 
 
 default_args = {
@@ -86,8 +101,8 @@ default_args = {
 }
 
 with DAG(
-    "DAG_SQL_Universidad_Tecnologica_Nacional",
-    description='DAG SQL query',
+    "DAG_ETL_Univ",
+    description='DAG ETL',
     default_args=default_args,
     template_searchpath=f'{path_p}/airflow/include',
     start_date=datetime(2021, 4, 22),
@@ -102,12 +117,17 @@ with DAG(
 
         transform = PythonOperator(
             task_id="transform",
-            python_callable=transform_data
+            python_callable=transform_data,
+            op_args={"Universidad_Tecnologica_Nacional"}
         )
 
         load = PythonOperator(
             task_id="load",
-            python_callable=load_to_s3
-        )
-
+            python_callable=load_to_s3,
+            op_kwargs={
+            'file_name_': 'Universidad_Tecnologica_Nacional',
+            'bucket_name': 'cohorte-abril-98a56bb4'
+        }
+    )
         extract >> transform >> load
+
