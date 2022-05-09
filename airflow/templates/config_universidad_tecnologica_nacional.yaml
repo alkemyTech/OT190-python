@@ -1,0 +1,3 @@
+dag_id: 'Universidad_Tecnologica_Nacional'
+schedule_interval: '@daily'
+catchup: False
