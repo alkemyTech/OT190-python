@@ -7,7 +7,6 @@ SELECT
 	sexo AS gender,
 	fechas_nacimiento AS birth_date,
 	codigos_postales AS postal_code,
-	direcciones AS location,
 	emails AS email
 FROM 
 	public.uba_kenedy
@@ -15,3 +14,4 @@ where
 	universidades = 'universidad-de-buenos-aires'
 	AND TO_DATE(fechas_de_inscripcion,'DD-Mon-YY')>= '01-Sep-2020'
 	AND TO_DATE(fechas_de_inscripcion,'DD-Mon-YY')< '01-Feb-2021'
+
