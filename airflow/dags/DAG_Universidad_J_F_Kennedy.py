@@ -1,5 +1,3 @@
-#Crear una función Python con Pandas para la Universidad J.F Kennedy
-
 import os
 import logging
 import csv
@@ -9,9 +7,9 @@ import pandas as pd
 from dateutil.relativedelta import relativedelta
 from dateutil import parser
 from datetime import timedelta, datetime 
-from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+from airflow.providers.amazon.aws.transfers.local_to_s3 import LocalFilesystemToS3Operator
 
 
 logging.basicConfig(
@@ -144,8 +142,13 @@ with DAG(
 
 
     #Load data to S3
-    #It is proposed to use PythonOperator
-    load_data= DummyOperator(task_id='load_data')
+    load_data= LocalFilesystemToS3Operator(
+        task_id='load_data',
+        filename=f'{parent_path}/datasets/{file_university}',
+        dest_key='aws_s3_alkemy_universidades',
+        dest_bucket='cohorte-abril-98a56bb4',
+        replace=True,
+    )
 
     #Task order
     logging_dag >> extract_data >> process_data >> load_data
