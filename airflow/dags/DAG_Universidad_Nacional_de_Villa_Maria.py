@@ -2,7 +2,7 @@ import logging
 import pathlib
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.dummy import DummyOperator
+from airflow.providers.amazon.aws.transfers.local_to_s3 import LocalFilesystemToS3Operator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.operators.python import PythonOperator
 from operators.process_univ_nac_villa_maria import transform_univ_nac_villa_maria
@@ -36,6 +36,8 @@ def pg_extract(copy_sql):
     logging.info('Exporting query to file')
     pg_hook.copy_expert(copy_sql, filename=f"{PARENT_PATH}/files/{CSV_NAME}")
 
+#DAG
+
 #Argumentos predeterminados para configuracion
 default_args = {
     'owner': 'airflow',    
@@ -59,17 +61,21 @@ with DAG(
             op_kwargs={
                 'copy_sql': f'COPY ({QUERY}) TO STDOUT WITH CSV HEADER'
                 }
-            )
+        )
 
         #Transformar datos
-        pandas_transform = DummyOperator(
+        pandas_transform = PythonOperator(
             task_id='pandas_transform',
-            # python_callable=transform_univ_nac_villa_maria,
+            python_callable=transform_univ_nac_villa_maria,
         )
 
         #Placeholder cargar datos
-        load_to_s3 = DummyOperator(
-            task_id = "load_to_s3"
+        load_to_s3 = LocalFilesystemToS3Operator(
+            task_id='load_to_s3',
+            filename=f'{PARENT_PATH}/datasets/Universidad_De_Flores.txt',
+            dest_key='aws_s3_alkemy_universidades',
+            dest_bucket='cohorte-abril-98a56bb4',
+            replace=True,
         )
 
         #Flujo de ejecución
