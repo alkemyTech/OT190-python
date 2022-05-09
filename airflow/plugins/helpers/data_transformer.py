@@ -1,6 +1,4 @@
 """ lib/data_transforme.py """
-
-from asyncio.log import logger
 import pandas as pd
 
 class DataTransformer():
@@ -105,6 +103,3 @@ class DataTransformer():
         self.df[col] = pd.to_datetime(self.df[col])
         self.df[col] = pd.to_datetime(self.df[col], format='%Y-%m-%d')
 
-
-    def tester(self):
-        logger.info("Test method exe")

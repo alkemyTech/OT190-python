@@ -1,22 +1,23 @@
 import os
-from datetime import datetime, timedelta
 import logging
 import pathlib
 import csv
+from datetime import datetime, timedelta
 from helpers.data_transformer import DataTransformer
 
 from airflow import DAG
 from airflow.hooks.postgres_hook import PostgresHook
-from airflow.operators.postgres_operator import PostgresOperator
 from airflow.hooks.S3_hook import S3Hook
 from airflow.operators.python import PythonOperator
 
 """ DAG performs ETL for Universidad Tecnologica Nacional. """
 
+
 # Logs config
 logging.basicConfig(
     format='%(asctime)s-%(levelname)s-%(message)s',
     datefmt='%Y-%m-%d')
+
 
 logger = logging.getLogger(__name__)
 
@@ -66,7 +67,7 @@ def extract_data(file_name_):
 
         logger.info('Writing done')
 
-
+ 
 def transform_data(file_name_):
     data_trans = DataTransformer(f'{path_p}/files/{file_name_}.csv')
     
@@ -101,7 +102,7 @@ default_args = {
 }
 
 with DAG(
-    "DAG_ETL_Univ",
+    "DAG_Universidad_Tecnologica_Nacional",
     description='DAG ETL',
     default_args=default_args,
     template_searchpath=f'{path_p}/airflow/include',
@@ -126,8 +127,8 @@ with DAG(
             python_callable=load_to_s3,
             op_kwargs={
             'file_name_': 'Universidad_Tecnologica_Nacional',
-            'bucket_name': 'cohorte-abril-98a56bb4'
-        }
-    )
+            'bucket_name': 'cohorte-abril-98a56bb4'}
+        )
+        
         extract >> transform >> load
 
