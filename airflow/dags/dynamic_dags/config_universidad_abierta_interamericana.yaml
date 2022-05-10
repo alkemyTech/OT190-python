@@ -1,0 +1,6 @@
+dag_id: 'ETL_Universidad_Abierta_Interamericana'
+scheduler_interval: '@hourly'
+query_sql: 'SQL_Universidad_Abierta_Interamericana.sql'
+originaldata_file: 'universidad_abierta_interamericana.csv'
+finaldata_file: 'universidad_abierta_interamericana.txt'
+datetime_format: '%y/%b/%d'
