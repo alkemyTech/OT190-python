@@ -1,0 +1,4 @@
+dag_id: 'ETL_Universidad_del_Cine'
+sql_file: 'Universidad_del_Cine'
+file_name: 'universidad_del_cine'
+load_file: 'universidad_del_cine.txt'
