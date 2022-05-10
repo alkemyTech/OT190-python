@@ -1,0 +1,6 @@
+dag_id: 'ETL_Universidad_Nacional_De_La_Pampa'
+scheduler_interval: '@hourly'
+query_sql: 'SQL_Universidad_Nacional_De_La_Pampa.sql'
+originaldata_file: 'universidad_nacional_de_la_pampa.csv'
+finaldata_file: 'universidad_nacional_de_la_pampa.txt'
+datetime_format: '%d/%m/%Y'
