@@ -1,3 +1,8 @@
+'''
+Genera los DAG dinámicamente de:
+- Universidad de Palermo
+- Universidad Nacional de Jujuy
+'''
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator

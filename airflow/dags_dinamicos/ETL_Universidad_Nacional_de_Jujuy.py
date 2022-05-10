@@ -1,3 +1,8 @@
+'''
+Genera los DAG dinámicamente de:
+- Universidad de Palermo
+- Universidad Nacional de Jujuy
+'''
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
@@ -17,8 +22,8 @@ from transform_universidades_c import normalize_data
 default_args = {"owner": "airflow", "retries": 5, "retry_delay": timedelta(seconds=30)}
 
 with DAG(
-    "ETL_Universidad_de_Palermo",
-    description="ETL para la Universidad de Palermo",
+    "ETL_Universidad_Nacional_de_Jujuy",
+    description="ETL para la Universidad Nacional de Jujuy",
     default_args=default_args,
     schedule_interval="@hourly",  # Que se ejecute cada hora
     start_date=datetime(2022, 4, 22),
@@ -32,8 +37,8 @@ with DAG(
         python_callable=query_to_csv,
         op_kwargs={
             "local_path": path_p,
-            "sql_file": "SQL_Universidad_de_Palermo.sql",
-            "filename": "universidad_de_palermo.csv",
+            "sql_file": "SQL_Universidad_Nacional_de_Jujuy.sql",
+            "filename": "universidad_nacional_de_jujuy.csv",
         },
         dag=dag,
     )
@@ -43,7 +48,7 @@ with DAG(
         python_callable=normalize_data,
         dag=dag,
         op_kwargs={
-            "csv_filename": "universidad_de_palermo",
+            "csv_filename": "universidad_nacional_de_jujuy",
             "file_path": path_p,
         },
     )
@@ -52,8 +57,8 @@ with DAG(
         task_id="load_task",
         python_callable=upload_to_S3,
         op_kwargs={
-            "file_path": os.path.join(path_p, "datasets/universidad_de_palermo.txt"),
-            "key": "universidad_de_palermo.txt",
+            "file_path": os.path.join(path_p, "datasets/universidad_nacional_de_jujuy.txt"),
+            "key": "universidad_nacional_de_jujuy.txt",
         },
         dag=dag,
     )

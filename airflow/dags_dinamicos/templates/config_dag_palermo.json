@@ -1,0 +1,10 @@
+{
+    "university": "Universidad de Palermo",
+    "dag_id": "ETL_Universidad_de_Palermo",
+    "schedule_interval": "@hourly",
+    "sql_filepath": "SQL_Universidad_de_Palermo.sql",
+    "sql_filename": "universidad_de_palermo.csv",
+    "csv_filename": "universidad_de_palermo",
+    "s3_key": "universidad_de_palermo.txt",
+    "load_filepath": "datasets/universidad_de_palermo.txt"
+}
