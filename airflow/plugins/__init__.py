@@ -1,13 +1,12 @@
-from __future__ import absolute_import, division, print_function
-
+from airflow.plugins_manager import AirflowPlugin
 import helpers
 import operators
 
-from airflow.plugins_manager import AirflowPlugin
-
-
+#Define the plugin class
 class MyPlugins(AirflowPlugin):
-    name = "my_plugin"
-
+    #Name your AirflowPlugin
+    name = "data_transform"
+    
+    #List all plugins you want to use in dag operation
+    helpers = [helpers.DataTransformer, helpers.transform_data]
     operators = [operators.SQLToLocalCsv]
-    helpers = [helpers.transform_data]

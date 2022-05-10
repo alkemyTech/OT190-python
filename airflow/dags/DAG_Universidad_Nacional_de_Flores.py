@@ -2,9 +2,10 @@ import logging
 import pathlib
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.dummy import DummyOperator
+from airflow.providers.amazon.aws.transfers.local_to_s3 import LocalFilesystemToS3Operator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.operators.python import PythonOperator
+from operators.process_univ_de_flores import transform_univ_de_flores
 
 #Configuracion de logging
 logger = logging.getLogger("dag_univ_nac_flores")
@@ -12,6 +13,7 @@ FORMAT = '%(asctime)-%(levelname)-%(message)s'
 DATEFORMAT = '%Y-%m-%d'
 logging.basicConfig(format=FORMAT, datefmt=DATEFORMAT, level=logging.DEBUG)
 
+###############PSQL##############
 #Obtener parent path para luego configurar el template_searchpath
 PARENT_PATH = (pathlib.Path(__file__).parent.absolute()).parent
 
@@ -28,18 +30,21 @@ CSV_NAME = f'{TEMPLATE_NAME.split("SQL_")[1].split(".")[0]}.csv'
 #Pasar .sql a string y sacar punto y coma final: 'being a psql command, it is not terminated by a semicolon'
 QUERY = open(f'{TEMPLATE_LOCATION}/{TEMPLATE_NAME}', "r").read().replace(';', '')
 
+#Query a .csv usando PostgresHook 
+def pg_extract(copy_sql):
+    pg_hook = PostgresHook.get_hook(POSTGRES_CONN_ID)
+    logging.info('Exporting query to file')
+    pg_hook.copy_expert(copy_sql, filename=f"{PARENT_PATH}/files/{CSV_NAME}")
+
+
+#DAG
+
 #Argumentos predeterminados para configuracion
 default_args = {
     'owner': 'airflow',    
     'retries': 5,
     'retry_delay': timedelta(minutes=5),
 }
-
-#Query a .csv usando PostgresHook 
-def pg_extract(copy_sql):
-    pg_hook = PostgresHook.get_hook(POSTGRES_CONN_ID)
-    logging.info('Exporting query to file')
-    pg_hook.copy_expert(copy_sql, filename=f"{PARENT_PATH}/files/{CSV_NAME}")
 
 #Configurar DAG
 with DAG(
@@ -59,14 +64,20 @@ with DAG(
                 }
             )
 
-        #Placeholder transformar datos
-        pandas_transform = DummyOperator(
-            task_id = "pandas_transform"
+        #Transformar datos
+        pandas_transform = PythonOperator(
+            task_id='pandas_transform',
+            python_callable=transform_univ_de_flores,
         )
 
+
         #Placeholder cargar datos
-        load_to_s3 = DummyOperator(
-            task_id = "load_to_s3"
+        load_to_s3 = LocalFilesystemToS3Operator(
+            task_id='load_to_s3',
+            filename=f'{PARENT_PATH}/datasets/Universidad_De_Villa_Maria.txt',
+            dest_key='aws_s3_alkemy_universidades',
+            dest_bucket='cohorte-abril-98a56bb4',
+            replace=True,
         )
 
         #Flujo de ejecución
