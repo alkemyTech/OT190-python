@@ -211,7 +211,7 @@ with DAG(
         python_callable=load_to_s3,
         op_kwargs={
             'file_name': f'{root_folder}/datasets/universidad_de_buenos_aires.txt',
-            'key': 'posts.json',
+            'key': 'aws_s3_alkemy_universidades',
             'bucket_name': 'cohorte-abril-98a56bb4'
         }
     )
