@@ -1,0 +1,3 @@
+dag_id: 'Universidad_Facultad Latinoamericana de Ciencias Sociales'
+schedule_interval: '@daily'
+catchup: False
