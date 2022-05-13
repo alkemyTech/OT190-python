@@ -205,7 +205,8 @@ with DAG(
     load_data= LocalFilesystemToS3Operator(
        task_id='load_data',
        filename=f'{parent_path}/datasets/{name_University}.txt',
-       dest_key='aws_s3_alkemy_universidades',
+       aws_conn_id='aws_s3_alkemy_universidades',
+       dest_key=f'{name_University}.txt',
        dest_bucket='cohorte-abril-98a56bb4',
        replace=True,
        )
