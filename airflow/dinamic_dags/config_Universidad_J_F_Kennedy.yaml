@@ -1,0 +1,3 @@
+dag_id: 'ETL_Universidad_J_F_Kennedy'
+schedule_interval: '@daily'
+catchup: False
