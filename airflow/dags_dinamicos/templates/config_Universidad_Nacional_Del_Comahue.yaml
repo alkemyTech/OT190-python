@@ -1,0 +1,5 @@
+dag_id: 'Universidad_Nacional_Del_Comahue'
+schedule_interval: 'timedelta(hours=1)'
+start_date: 'datetime(2022, 4, 24)'
+name_University: 'Universidad_Nacional_Del_Comahue'
+catchup: False
